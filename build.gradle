@@ -42,6 +42,7 @@ dependencies {
 
 	// Fast Api
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:4.2.0'
+	runtimeOnly 'com.h2database:h2'
 }
 
 tasks.named('test') {
