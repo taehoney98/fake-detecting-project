@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: fake-detection
+  profiles:
+    activate: local
   datasource:
     url: jdbc:h2:mem:testdb
     driver-class-name: org.h2.Driver
@@ -22,3 +24,18 @@ spring:
     level:
       org.hibernate.SQL: DEBUG  # Hibernate SQL ?? ??
       org.hibernate.type.descriptor.sql.BasicBinder: TRACE  # SQL ???? ??? ??
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: hops0210
+    password: efxqcjbwxotahzmz
+    properties:
+      mail:
+        smtp:
+          auth: true            # 사용자 인증 시도 여부
+          starttls:
+            enable: true        # starttls 활성화 여부
+service:
+  jwt:
+    secret-key: 3nZ2u9bK0jLW5qPvX7oY6eR8JzF1TgD4cA3sQkUuIV8HnP1wLGzYjS
+
