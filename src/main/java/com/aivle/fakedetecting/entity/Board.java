@@ -19,5 +19,5 @@ public class Board extends BaseEntity{
     private Long id;
     @Column(name = "bd_title")
     private String title;
-    @Column(name = "bd_")
+//    @Column(name = "bd_")
 }

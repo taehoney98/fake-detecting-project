@@ -36,8 +36,8 @@ public class Member extends BaseEntity{
     @Column(name = "mb_svc_info_proc_agmt")
     private boolean infoAgmt;
 
-    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
-    private MailAuth mailAuth;
+//    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
+//    private MailAuth mailAuth;
 
     public static Member toEntity(RequestSignUp requestSignUp){
         return Member.builder()
