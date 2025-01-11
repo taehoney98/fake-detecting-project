@@ -49,7 +49,7 @@ public class MemberService {
         if(!passwordEncoder.matches(requestLogin.getPassword(), findedMember.getPassword())){
             throw new BadCredentialsException("Invalid username or password.");
         }
-        String token = jwtUtil.createJwt(findedMember.getSeq(), findedMember.getEmail(), 24*60*1000L);
+        String token = jwtUtil.createJwt(findedMember.getSeq(), findedMember.getEmail(), 24*60*60*1000L);
 
         return ResponseLogin.toResponseLogin(findedMember, token);
     }
@@ -72,4 +72,6 @@ public class MemberService {
     public Member findMember(Long id){
         return memberRepository.findById(id).orElseThrow(MemberNotFound::new);
     }
+
+    // TODO: 개인정보 수정 추가
 }

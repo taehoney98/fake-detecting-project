@@ -38,6 +38,7 @@ public class SecurityConfig {
                 .cors(AbstractHttpConfigurer::disable)
                 //http 요청 권한 설정
                 .authorizeHttpRequests(requests -> {
+                    // TODO: URI별 권한 확인 필요
                     requests.requestMatchers("/h2-console/**").permitAll();
                     requests.anyRequest().permitAll();
                 })
