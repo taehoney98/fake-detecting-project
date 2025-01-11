@@ -2,6 +2,7 @@ package com.aivle.fakedetecting.entity;
 
 import com.aivle.fakedetecting.dto.RequestChangePassword;
 import com.aivle.fakedetecting.dto.RequestSignUp;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -42,7 +43,7 @@ public class Member extends BaseEntity{
 //    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
 //    private MailAuth mailAuth;
     @OneToMany(mappedBy = "member")
-    @JsonManagedReference
+    @JsonBackReference
     private List<Board> boardList;
 
     public static Member toEntity(RequestSignUp requestSignUp){

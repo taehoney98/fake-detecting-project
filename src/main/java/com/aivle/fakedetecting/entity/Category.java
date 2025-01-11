@@ -1,5 +1,6 @@
 package com.aivle.fakedetecting.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,6 +24,6 @@ public class Category extends BaseEntity{
     @Column(name = "cd_name")
     private String name;
     @OneToMany(mappedBy = "category")
-    @JsonManagedReference
+    @JsonBackReference
     private List<Board> boardList;
 }

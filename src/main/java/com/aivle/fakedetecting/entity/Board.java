@@ -3,6 +3,7 @@ package com.aivle.fakedetecting.entity;
 
 import com.aivle.fakedetecting.dto.RequestBoard;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,11 +26,11 @@ public class Board extends BaseEntity{
     private String password;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cd_seq")
-    @JsonBackReference
+    @JsonManagedReference
     private Category category;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mb_seq")
-    @JsonBackReference
+    @JsonManagedReference
     private Member member;
 
     public static Board toEntity(RequestBoard requestBoard){
