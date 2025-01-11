@@ -23,7 +23,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class MemberService implements UserDetailsService {
+public class MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
@@ -69,10 +69,7 @@ public class MemberService implements UserDetailsService {
         return findedMember;
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Member member = memberRepository.findByEmail(username)
-                .orElseThrow(() -> new BadCredentialsException("user not found"));
-        return null;
+    public Member findMember(Long id){
+        return memberRepository.findById(id).orElseThrow(MemberNotFound::new);
     }
 }

@@ -28,6 +28,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
             Long userId =  Long.valueOf(claims.get("userId").toString());
             // 인증 객체 설정 (username, authorities 등)
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                // TODO: 권한 추가
                 MemberPrincipal memberPrincipal = new MemberPrincipal(userId, username, null, null);
                 UsernamePasswordAuthenticationToken authenticationToken =
                         new UsernamePasswordAuthenticationToken(memberPrincipal, null, memberPrincipal.getAuthorities());

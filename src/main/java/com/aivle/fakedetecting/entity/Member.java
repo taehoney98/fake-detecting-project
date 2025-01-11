@@ -2,9 +2,12 @@ package com.aivle.fakedetecting.entity;
 
 import com.aivle.fakedetecting.dto.RequestChangePassword;
 import com.aivle.fakedetecting.dto.RequestSignUp;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -38,6 +41,9 @@ public class Member extends BaseEntity{
 
 //    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
 //    private MailAuth mailAuth;
+    @OneToMany(mappedBy = "member")
+    @JsonManagedReference
+    private List<Board> boardList;
 
     public static Member toEntity(RequestSignUp requestSignUp){
         return Member.builder()
