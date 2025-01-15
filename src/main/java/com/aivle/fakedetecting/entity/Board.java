@@ -25,7 +25,7 @@ public class Board extends BaseEntity{
     @Column(name = "bd_pwd")
     private String password;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cd_seq")
+    @JoinColumn(name = "cd_id")
     @JsonManagedReference
     private Category category;
     @ManyToOne(fetch = FetchType.LAZY)

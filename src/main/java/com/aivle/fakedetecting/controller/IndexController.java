@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 public class IndexController {
 
-    private final FastApiClient fastApiClient;
-
     @GetMapping("/")
     public String index(){ return "index"; }
 

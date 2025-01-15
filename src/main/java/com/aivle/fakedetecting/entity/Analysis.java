@@ -19,8 +19,9 @@ public class Analysis extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "url_detection_history_id")
     private Long urlId;
-    @Column(name = "mb_seq")
-    private Long memberId;
+    @ManyToOne
+    @JoinColumn(name = "mb_seq")
+    private Member member;
     @Column(name = "url")
     private String url;
     @Column(name = "url_result")
