@@ -8,6 +8,9 @@ import com.aivle.fakedetecting.entity.Member;
 import com.aivle.fakedetecting.repository.BoardRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -28,13 +31,21 @@ public class BoardService {
     }
 
     @Transactional
-    public Board findBoard(Long id, RequestBoardPassword requestBoardPassword) throws Exception {
-        Board board = boardRepository.findById(id)
+    public Board findBoard(RequestBoardPassword requestBoardPassword) throws Exception {
+        Board board = boardRepository.findById(requestBoardPassword.getId())
                 .orElseThrow(() -> new Exception("Board not found"));
         if(board.getPassword() != null && !board.getPassword().equals(requestBoardPassword.getPassword()))
             throw new Exception("Board password not match");
         return board;
     }
 
-    // TODO: 게시판 목록 조회, Page<>
+    public Board findBoardById(Long id) throws Exception {
+        return boardRepository.findById(id)
+                .orElseThrow(() -> new Exception("Board not found"));
+    }
+
+    public Page<Board> getPageBoards(int page){
+        Pageable pageable = PageRequest.of(page, 10);
+        return boardRepository.findAll(pageable);
+    }
 }

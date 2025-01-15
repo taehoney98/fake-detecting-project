@@ -10,5 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RequestBoardPassword {
+    private Long id;
     private String password;
 }

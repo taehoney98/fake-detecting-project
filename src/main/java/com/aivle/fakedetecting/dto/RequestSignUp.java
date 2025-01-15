@@ -21,4 +21,5 @@ public class RequestSignUp {
     private String gender;
     private boolean svcAgmt;
     private boolean infoAgmt;
+    private String address;
 }

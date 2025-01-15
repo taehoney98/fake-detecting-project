@@ -39,7 +39,8 @@ public class Member extends BaseEntity{
     private boolean svcAgmt;
     @Column(name = "mb_svc_info_proc_agmt")
     private boolean infoAgmt;
-
+    @Column(name = "mb_address")
+    private String address;
 //    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
 //    private MailAuth mailAuth;
     @OneToMany(mappedBy = "member")
@@ -57,6 +58,7 @@ public class Member extends BaseEntity{
                 .gender(requestSignUp.getGender())
                 .svcAgmt(requestSignUp.isSvcAgmt())
                 .infoAgmt(requestSignUp.isInfoAgmt())
+                .address(requestSignUp.getAddress())
                 .build();
     }
 

@@ -11,15 +11,16 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class ResponseBoard {
+    private Long id;
     private String title;
     private String content;
     private String categoryName;
     private String memberName;
     private LocalDateTime createAt;
-    // TODO: 답변 추가
-
+    private String comment;
     public static ResponseBoard toDto(Board board){
         return ResponseBoard.builder()
+                .id(board.getId())
                 .title(board.getTitle())
                 .content(board.getContent())
                 .categoryName(board.getCategory().getName())

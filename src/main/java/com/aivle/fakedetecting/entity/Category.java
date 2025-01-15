@@ -19,7 +19,7 @@ import java.util.List;
 public class Category extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cd_id")
+    @Column(name = "cd_seq")
     private Long id;
     @Column(name = "cd_name")
     private String name;
