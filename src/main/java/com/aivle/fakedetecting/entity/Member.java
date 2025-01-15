@@ -1,6 +1,7 @@
 package com.aivle.fakedetecting.entity;
 
 import com.aivle.fakedetecting.dto.RequestChangePassword;
+import com.aivle.fakedetecting.dto.RequestProfile;
 import com.aivle.fakedetecting.dto.RequestSignUp;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -70,5 +71,11 @@ public class Member extends BaseEntity{
     public void pwdChange(RequestChangePassword requestChangePassword){
         this.password = requestChangePassword.getNewPassword();
         this.passwordBefore = requestChangePassword.getCurrentPassword();
+    }
+
+    public void profileChange(RequestProfile requestProfile){
+        this.address = requestProfile.getAddress();
+        this.nickName = requestProfile.getNickName();
+        this.phone = requestProfile.getPhone();
     }
 }
