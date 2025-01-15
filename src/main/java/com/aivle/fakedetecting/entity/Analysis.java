@@ -1,5 +1,6 @@
 package com.aivle.fakedetecting.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,8 +20,9 @@ public class Analysis extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "url_detection_history_id")
     private Long urlId;
-    @Column(name = "mb_seq")
-    private Long memberId;
+    @ManyToOne
+    @JoinColumn(name = "mb_seq")
+    private Member memberId;
     @Column(name = "url")
     private String url;
     @Column(name = "url_result")
@@ -33,6 +35,4 @@ public class Analysis extends BaseEntity{
     private String title;
     @Column(name = "url_content")
     private String content;
-
-
 }

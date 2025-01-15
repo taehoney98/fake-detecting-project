@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AnalysisResult {
+public class ResponseAnalysis {
 
     private String url;
     private String result;
@@ -17,5 +17,7 @@ public class AnalysisResult {
     private String detectionDate;
     private String title;
     private String content;
+
+    // TO DO:
 
 }
