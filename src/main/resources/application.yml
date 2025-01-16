@@ -46,3 +46,5 @@ service:
   jwt:
     secret-key: 3nZ2u9bK0jLW5qPvX7oY6eR8JzF1TgD4cA3sQkUuIV8HnP1wLGzYjS
 
+upload:
+  path: src/main/resources/static/images/

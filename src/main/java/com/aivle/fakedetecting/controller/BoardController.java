@@ -13,6 +13,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequiredArgsConstructor
@@ -21,8 +22,9 @@ public class BoardController {
 
     @PostMapping("/board")
     @ResponseBody
-    public Board createBoard(@RequestBody RequestBoard requestBoard, @AuthenticationPrincipal MemberPrincipal memberPrincipal) throws Exception {
-        return boardService.createBoard(memberPrincipal.getUserId(), requestBoard);
+    public Board createBoard(@RequestPart RequestBoard requestBoard, @AuthenticationPrincipal MemberPrincipal memberPrincipal
+            , @RequestPart(required = false) MultipartFile multipartFile) throws Exception {
+        return boardService.createBoard(memberPrincipal.getUserId(), requestBoard, multipartFile);
     }
 
     @GetMapping("/board")
