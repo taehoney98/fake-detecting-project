@@ -2,10 +2,7 @@ package com.aivle.fakedetecting.controller;
 
 import com.aivle.fakedetecting.config.jwt.CustomAuthenticationToken;
 import com.aivle.fakedetecting.config.jwt.MemberPrincipal;
-import com.aivle.fakedetecting.dto.RequestChangePassword;
-import com.aivle.fakedetecting.dto.RequestLogin;
-import com.aivle.fakedetecting.dto.RequestSignUp;
-import com.aivle.fakedetecting.dto.ResponseLogin;
+import com.aivle.fakedetecting.dto.*;
 import com.aivle.fakedetecting.entity.Member;
 import com.aivle.fakedetecting.error.EmailAlreadyExistsException;
 import com.aivle.fakedetecting.error.MissingRequiredFieldException;
@@ -27,8 +24,6 @@ public class MemberController {
     @ResponseBody
     public String signUp(@RequestBody RequestSignUp requestSignUp) throws MissingRequiredFieldException, EmailAlreadyExistsException {
         memberService.signUp(requestSignUp);
-
-
         return requestSignUp.getEmail();
     }
 
@@ -51,5 +46,11 @@ public class MemberController {
             , @AuthenticationPrincipal MemberPrincipal memberPrincipal) throws Exception {
         Member member = memberService.changePassword(memberPrincipal.getUserId(), requestChangePassword);
         return member;
+    }
+    @PutMapping("/profile")
+    @ResponseBody
+    public Member changeProfile(@RequestBody RequestProfile requestProfile
+            , @AuthenticationPrincipal MemberPrincipal memberPrincipal){
+        return memberService.updateProfile(memberPrincipal.getUserId(), requestProfile);
     }
 }

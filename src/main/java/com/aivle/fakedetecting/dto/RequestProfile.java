@@ -9,7 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class RequestBoardPassword {
-    private Long id;
-    private String password;
+public class RequestProfile {
+    private String phone;
+    private String nickName;
+    private String address;
 }
