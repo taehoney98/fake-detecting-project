@@ -20,7 +20,6 @@ public class AnalysisService {
     public void getResult(@RequestParam("url") String url, Long id, ResponseAnalysis analysisResponseAnalysis) throws Exception{
         Member member = memberService.findMember(id);
         ResponseAnalysis responseAnalysis = fastApiClient.getAnalysis(url);
-
     }
 
 }
