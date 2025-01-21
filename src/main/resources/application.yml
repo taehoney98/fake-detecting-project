@@ -12,6 +12,8 @@ spring:
     username: sa
     password:
     jpa:
+      properties:
+        default_batch_fetch_size: 100
       hibernate:
         format_sql: true
         use_sql_comments: true
