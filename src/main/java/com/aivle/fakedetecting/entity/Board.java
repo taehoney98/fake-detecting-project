@@ -32,7 +32,12 @@ public class Board extends BaseEntity{
     @JoinColumn(name = "mb_seq")
     @JsonManagedReference
     private Member member;
-
+    @OneToOne(mappedBy = "board")
+    @JsonManagedReference
+    private Comment comment;
+    @OneToOne(mappedBy = "board")
+    @JsonManagedReference
+    private Image image;
     public static Board toEntity(RequestBoard requestBoard){
         return Board.builder()
                 .title(requestBoard.getTitle())

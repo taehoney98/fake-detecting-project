@@ -1,29 +1,28 @@
 package com.aivle.fakedetecting.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import net.minidev.json.annotate.JsonIgnore;
-
-import java.util.List;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Category extends BaseEntity{
+@EntityListeners(AuditingEntityListener.class)
+public class Image extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cd_seq")
+    @Column(name = "board_image_seq")
     private Long id;
-    @Column(name = "cd_name")
+    @Column(name = "board_image_name")
     private String name;
-    @OneToMany(mappedBy = "category")
+    @OneToOne
+    @JoinColumn(name = "bd_seq")
     @JsonBackReference
-    private List<Board> boardList;
+    private Board board;
 }

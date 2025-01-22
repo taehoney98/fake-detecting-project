@@ -1,10 +1,7 @@
 package com.aivle.fakedetecting.service;
 
 import com.aivle.fakedetecting.config.jwt.JwtUtil;
-import com.aivle.fakedetecting.dto.RequestChangePassword;
-import com.aivle.fakedetecting.dto.RequestLogin;
-import com.aivle.fakedetecting.dto.RequestSignUp;
-import com.aivle.fakedetecting.dto.ResponseLogin;
+import com.aivle.fakedetecting.dto.*;
 import com.aivle.fakedetecting.entity.Member;
 import com.aivle.fakedetecting.error.EmailAlreadyExistsException;
 import com.aivle.fakedetecting.error.MemberNotFound;
@@ -73,5 +70,9 @@ public class MemberService {
         return memberRepository.findById(id).orElseThrow(MemberNotFound::new);
     }
 
-    // TODO: 개인정보 수정 추가
+    public Member updateProfile(Long id, RequestProfile requestProfile){
+        Member member = findMember(id);
+        member.profileChange(requestProfile);
+        return member;
+    }
 }
