@@ -1,0 +1,230 @@
+.screen {
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    background-color: #f9f9f9;
+}
+
+.screen .group {
+    position: absolute;
+    width: 374px;
+    height: 51px;
+    top: 68px;
+    left: 1435px;
+    display: flex;
+    align-items: center;
+    gap: 44px;
+}
+
+.screen .text-wrapper {
+    font-weight: 700;
+    color: #7562e0;
+    font-size: 18px;
+    line-height: 27px;
+    font-family: "Nanum Gothic", Helvetica;
+    letter-spacing: 0;
+    white-space: nowrap;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.screen .div {
+    font-weight: 700;
+    color: #7562e0;
+    font-size: 18px;
+    line-height: 27px;
+    font-family: "Nanum Gothic", Helvetica;
+    letter-spacing: 0;
+    white-space: nowrap;
+}
+
+.screen .overlap {
+    position: absolute;
+    width: 1722px;
+    height: 740px;
+    top: 275px;
+    left: 81px;
+}
+
+.screen .group-2 {
+    position: absolute;
+    width: 738px;
+    height: 550px;
+    top: 17px;
+    left: 984px;
+}
+
+.screen .button {
+    all: unset;
+    box-sizing: border-box;
+    position: absolute;
+    width: 197px;
+    height: 59px;
+    top: 491px;
+    left: 124px;
+    background-color: #8976fd;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.screen .text-wrapper-2 {
+    width: 133px;
+    top: 12px;
+    left: 41px;
+    font-weight: 800;
+    color: #f9f9f9;
+    font-size: 25px;
+    line-height: normal;
+    position: absolute;
+    font-family: "Nanum Gothic", Helvetica;
+    letter-spacing: 0;
+    white-space: nowrap;
+}
+
+.screen .overlap-group {
+    position: absolute;
+    width: 734px;
+    height: 448px;
+    top: 0;
+    left: 0;
+}
+
+.screen .element {
+    position: absolute;
+    width: 232px;
+    height: 208px;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+}
+
+.screen .URL {
+    position: absolute;
+    width: 514px;
+    top: 376px;
+    left: 132px;
+    font-family: "NanumGothicOTF-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 20px;
+    letter-spacing: 0;
+    line-height: 40px;
+}
+
+.screen .FAKE-NEWS-DETECTER {
+    position: absolute;
+    width: 610px;
+    top: 99px;
+    left: 124px;
+    text-shadow: 0px 4px 4px #00000040;
+    font-family: "Tilt Warp", Helvetica;
+    font-weight: 400;
+    color: #332c5c;
+    font-size: 100px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.screen .img {
+    position: absolute;
+    width: 637px;
+    height: 690px;
+    top: 12px;
+    left: 363px;
+}
+
+.screen .element-2 {
+    position: absolute;
+    width: 214px;
+    height: 278px;
+    top: 76px;
+    left: 117px;
+}
+
+.screen .element-3 {
+    position: absolute;
+    width: 230px;
+    height: 172px;
+    top: 508px;
+    left: 0;
+    object-fit: cover;
+}
+
+.screen .image {
+    position: absolute;
+    width: 378px;
+    height: 305px;
+    top: 0;
+    left: 292px;
+}
+
+.screen .image-2 {
+    position: absolute;
+    width: 337px;
+    height: 106px;
+    top: 313px;
+    left: 524px;
+}
+
+.screen .image-3 {
+    position: absolute;
+    width: 307px;
+    height: 277px;
+    top: 463px;
+    left: 473px;
+}
+
+.screen .element-4 {
+    position: absolute;
+    width: 393px;
+    height: 330px;
+    top: 318px;
+    left: 43px;
+}
+
+.screen .text-wrapper-3 {
+    width: 89px;
+    top: 1017px;
+    left: 960px;
+    font-weight: 700;
+    color: #7562e0;
+    font-size: 18px;
+    line-height: 27px;
+    position: absolute;
+    font-family: "Nanum Gothic", Helvetica;
+    letter-spacing: 0;
+    white-space: nowrap;
+}
+
+.screen .frame {
+    width: 132px;
+    height: 51px;
+    border-radius: 15px;
+    border: 1px solid;
+    border-color: #8976fd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.screen .text-wrapper-4 {
+    font-weight: 700;
+    color: #7562e0;
+    font-size: 18px;
+    text-align: center;
+    line-height: 27px;
+    font-family: "Nanum Gothic", Helvetica;
+    letter-spacing: 0;
+    white-space: nowrap;
+}
+
+.screen .element-5 {
+    position: absolute;
+    width: 181px;
+    height: 65px;
+    top: 63px;
+    left: 106px;
+    object-fit: cover;
+}

@@ -11,8 +11,8 @@ public class IndexController {
     @GetMapping("/")
     public String index(){ return "index"; }
 
-    @GetMapping("/sign_up")
-    public String signup(){return "sign-up";}
+    @GetMapping("/signup")
+    public String signup(){return "signup";}
 
     @GetMapping("/login")
     public String login(){return "login";}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="css/globals.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    <div class="screen">
+        <div class="group">
+            <div class="div">게시판</div>
+            <a href="/login" class="text-wrapper" id="loginLink">로그인</a>
+            <a href="/signup" class="frame" id="signupLink">
+                <div class="text-wrapper-4">회원가입</div>
+            </a>
+            <a href="/logout" class="frame" id="logoutLink" style="display: none">
+                <div class="text-wrapper-4">로그아웃</div>
+            </a>
+        </div>
+        <div class="overlap">
+            <div class="group-2">
+                <button class="button">
+                    <div class="text-wrapper-2">사용해보기</div>
+                </button>
+                <div class="overlap-group">
+                    <img class="element" src="https://c.animaapp.com/TFf1ian7/img/-----2025-01-20-211216-1.png" />
+                    <p class="URL">유튜브 URL 입력만으로<br />가짜뉴스 및 허위정보를 담고 있는 영상인지 확인해보세요!</p>
+                    <div class="FAKE-NEWS-DETECTER">FAKE NEWS<br />DETECTER</div>
+                </div>
+            </div>
+            <img class="img" src="https://c.animaapp.com/TFf1ian7/img/-----2025-01-22-161402-1.png" />
+            <img class="element-2" src="https://c.animaapp.com/TFf1ian7/img/-----2025-01-22-161343-1@2x.png" />
+            <img class="element-3" src="https://c.animaapp.com/TFf1ian7/img/-----2025-01-22-161057-1@2x.png" />
+            <img class="image" src="https://c.animaapp.com/TFf1ian7/img/image4@2x.png" />
+            <img class="image-2" src="https://c.animaapp.com/TFf1ian7/img/image2@2x.png" />
+            <img class="image-3" src="https://c.animaapp.com/TFf1ian7/img/image3.png" />
+            <img class="element-4" src="https://c.animaapp.com/TFf1ian7/img/-----2025-01-22-161237-1@2x.png" />
+        </div>
+        <div class="text-wrapper-3">요금 안내</div>
+        <a class="text-wrapper" href="/">
+            <img class="element-5" src="https://c.animaapp.com/TFf1ian7/img/-----2025-01-22-165404-1@2x.png" />
+        </a>
+    </div>
+    <script type="text/javascript">
+        window.onload = function() {
+            // 디스플레이 배율 값 얻기
+            const devicePixelRatio = window.devicePixelRatio;
+
+            // 배율에 따라 scale 값 계산 (예: 125% 배율은 0.8, 100% 배율은 1.0)
+            let scaleValue = 1.0;  // 기본 값 1.0
+            if (devicePixelRatio > 1) {
+                scaleValue = 0.8;  // 배율이 100% 이상일 때 0.8로 축소
+            }
+
+            // 화면 축소 적용
+            document.body.style.transform = `scale(${scaleValue})`;  // 배율에 맞게 축소
+            document.body.style.transformOrigin = "0 0";  // 축소 기준을 왼쪽 상단으로 설정
+
+            // 화면 크기 설정 (1920x1080)
+            document.body.style.width = "1920px";
+            document.body.style.height = "1080px";
+
+            const token = localStorage.getItem('token'); // localStorage에서 token 확인
+
+            const loginLink = document.getElementById('loginLink');
+            const signupLink = document.getElementById('signupLink');
+            const logoutLink = document.getElementById('logoutLink');
+
+            if (token) {
+                // 토큰이 있으면 로그인/회원가입 링크 숨기고 로그아웃 링크 보임
+                loginLink.style.display = 'none';
+                signupLink.style.display = 'none';
+                logoutLink.style.display = 'flex';
+            } else {
+                // 토큰이 없으면 로그인/회원가입 링크 보임
+                loginLink.style.display = 'flex';
+                signupLink.style.display = 'flex';
+                logoutLink.style.display = 'none';
+            }
+        };
+        document.getElementById('logoutLink').addEventListener('click', function(event) {
+            // localStorage에서 token 삭제
+            localStorage.removeItem('token');
+        });
+    </script>
+<script>
+
+</script>
+</body>
+
+</html>
