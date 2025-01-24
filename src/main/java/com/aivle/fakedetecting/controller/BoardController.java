@@ -1,10 +1,7 @@
 package com.aivle.fakedetecting.controller;
 
 import com.aivle.fakedetecting.config.jwt.MemberPrincipal;
-import com.aivle.fakedetecting.dto.RequestBoard;
-import com.aivle.fakedetecting.dto.RequestBoardPassword;
-import com.aivle.fakedetecting.dto.ResponseBoard;
-import com.aivle.fakedetecting.dto.ResponseBoardPage;
+import com.aivle.fakedetecting.dto.*;
 import com.aivle.fakedetecting.entity.Board;
 import com.aivle.fakedetecting.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -22,9 +19,10 @@ public class BoardController {
 
     @PostMapping("/board")
     @ResponseBody
-    public Board createBoard(@RequestPart RequestBoard requestBoard, @AuthenticationPrincipal MemberPrincipal memberPrincipal
-            , @RequestPart(required = false) MultipartFile multipartFile) throws Exception {
-        return boardService.createBoard(memberPrincipal.getUserId(), requestBoard, multipartFile);
+    public ApiResult<Boolean> createBoard(@RequestPart(name = "requestBoard") RequestBoard requestBoard, @AuthenticationPrincipal MemberPrincipal memberPrincipal
+            , @RequestPart(required = false, name = "multipartFile") MultipartFile multipartFile) throws Exception {
+        boardService.createBoard(memberPrincipal.getUserId(), requestBoard, multipartFile);
+        return ApiResult.success(true, "개시글 작성");
     }
 
     @GetMapping("/board")

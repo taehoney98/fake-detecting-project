@@ -10,6 +10,7 @@ import com.aivle.fakedetecting.service.MemberService;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -22,14 +23,14 @@ public class MemberController {
 
     @PostMapping("/signup")
     @ResponseBody
-    public String signUp(@RequestBody RequestSignUp requestSignUp) throws MissingRequiredFieldException, EmailAlreadyExistsException {
+    public ApiResult<Boolean> signUp(@RequestBody RequestSignUp requestSignUp) throws MissingRequiredFieldException, EmailAlreadyExistsException {
         memberService.signUp(requestSignUp);
-        return requestSignUp.getEmail();
+        return ApiResult.success(true, "회원가입 성공");
     }
 
     @PostMapping("/login")
     @ResponseBody
-    public String login(@RequestBody RequestLogin requestLogin, HttpServletResponse response){
+    public ApiResult<ResponseLogin> login(@RequestBody RequestLogin requestLogin, HttpServletResponse response){
         ResponseLogin responseLogin = memberService.login(requestLogin);
         CustomAuthenticationToken customAuthenticationToken =
                 new CustomAuthenticationToken(responseLogin.getId()
@@ -37,7 +38,7 @@ public class MemberController {
         SecurityContextHolder.getContext().setAuthentication(customAuthenticationToken);
         response.setHeader(HttpHeaders.AUTHORIZATION, responseLogin.getToken());
 
-        return responseLogin.getEmail();
+        return ApiResult.success(responseLogin, "로그인 성공");
     }
 
     @PutMapping("/password")
