@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="css/globals.css"/>
     <link rel="stylesheet" href="css/style.css"/>
     <link rel="stylesheet" href="css/signup.css"/>
+    <script type="text/javascript" src="js/layout.js"></script>
+
 </head>
 
 <body>
@@ -33,7 +35,7 @@
             <form class="signup-form" method="post" onsubmit="handleFormSubmit(event)">
                 <div class="form-group">
                     <label for="email">이메일</label>
-                    <input type="email" id="email" required placeholder="이메일을 입력하세요">
+                    <input type="email" id="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]" required placeholder="이메일을 입력하세요">
                 </div>
                 <div class="form-group">
                     <label for="password">비밀번호</label>
@@ -52,7 +54,7 @@
                                 <option value="+1" data-flag="us">🇺🇸 +1</option>
                                 <!-- 다른 국가 옵션 추가 -->
                             </select>
-                            <input type="tel" id="phone" required placeholder="010 0000 0000">
+                            <input type="tel" id="phone" pattern="\d{3}-\d{4}-\d{4}" maxlength="13" required placeholder="010 0000 0000">
                         </div>
                     </div>
                 </div>

@@ -100,7 +100,7 @@
 
 .screen .URL {
     position: absolute;
-    width: 514px;
+    width: 100%;
     top: 376px;
     left: 132px;
     font-family: "NanumGothicOTF-Bold", Helvetica;
