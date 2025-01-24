@@ -34,14 +34,14 @@ public class Member extends BaseEntity{
     private String passwordBefore;
     @Column(name = "mb_phone")
     private String phone;
-    @Column(name = "mb_gender")
-    private String gender;
+//    @Column(name = "mb_gender")
+//    private String gender;
     @Column(name = "mb_svc_use_pcy_agmt")
     private boolean svcAgmt;
     @Column(name = "mb_svc_info_proc_agmt")
     private boolean infoAgmt;
-    @Column(name = "mb_address")
-    private String address;
+//    @Column(name = "mb_address")
+//    private String address;
 //    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
 //    private MailAuth mailAuth;
     @OneToMany(mappedBy = "member")
@@ -56,10 +56,10 @@ public class Member extends BaseEntity{
                 .password(requestSignUp.getPassword())
                 .passwordBefore(requestSignUp.getPassword())
                 .phone(requestSignUp.getPhone())
-                .gender(requestSignUp.getGender())
+//                .gender(requestSignUp.getGender())
                 .svcAgmt(requestSignUp.isSvcAgmt())
                 .infoAgmt(requestSignUp.isInfoAgmt())
-                .address(requestSignUp.getAddress())
+//                .address(requestSignUp.getAddress())
                 .build();
     }
 
@@ -74,7 +74,7 @@ public class Member extends BaseEntity{
     }
 
     public void profileChange(RequestProfile requestProfile){
-        this.address = requestProfile.getAddress();
+//        this.address = requestProfile.getAddress();
         this.nickName = requestProfile.getNickName();
         this.phone = requestProfile.getPhone();
     }

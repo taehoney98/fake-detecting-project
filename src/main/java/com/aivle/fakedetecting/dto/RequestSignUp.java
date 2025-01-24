@@ -18,8 +18,8 @@ public class RequestSignUp {
     private String password;
     private String confirmPassword;
     private String phone;
-    private String gender;
+//    private String gender;
     private boolean svcAgmt;
     private boolean infoAgmt;
-    private String address;
+//    private String address;
 }

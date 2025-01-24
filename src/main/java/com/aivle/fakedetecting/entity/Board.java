@@ -35,6 +35,9 @@ public class Board extends BaseEntity{
     @OneToOne(mappedBy = "board")
     @JsonManagedReference
     private Comment comment;
+    @OneToOne(mappedBy = "board")
+    @JsonManagedReference
+    private Image image;
     public static Board toEntity(RequestBoard requestBoard){
         return Board.builder()
                 .title(requestBoard.getTitle())

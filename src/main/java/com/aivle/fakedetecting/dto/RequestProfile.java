@@ -12,5 +12,5 @@ import lombok.Setter;
 public class RequestProfile {
     private String phone;
     private String nickName;
-    private String address;
+//    private String address;
 }

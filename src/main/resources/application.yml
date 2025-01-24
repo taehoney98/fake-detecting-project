@@ -12,6 +12,8 @@ spring:
     username: sa
     password:
     jpa:
+      properties:
+        default_batch_fetch_size: 100
       hibernate:
         format_sql: true
         use_sql_comments: true
@@ -33,6 +35,16 @@ spring:
           auth: true            # 사용자 인증 시도 여부
           starttls:
             enable: true        # starttls 활성화 여부
+  web:
+    resources:
+      static-locations: classpath:/static/
+  devtools:
+    livereload:
+      enabled: true
+    thymeleaf:
+      cache: false
+    restart:
+      enabled: true
 logging:
   level:
     org:
@@ -46,3 +58,5 @@ service:
   jwt:
     secret-key: 3nZ2u9bK0jLW5qPvX7oY6eR8JzF1TgD4cA3sQkUuIV8HnP1wLGzYjS
 
+upload:
+  path: src/main/resources/static/images/

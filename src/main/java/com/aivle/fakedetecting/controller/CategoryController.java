@@ -1,13 +1,13 @@
 package com.aivle.fakedetecting.controller;
 
+import com.aivle.fakedetecting.dto.ApiResult;
 import com.aivle.fakedetecting.entity.Category;
 import com.aivle.fakedetecting.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -16,7 +16,7 @@ public class CategoryController {
 
     @PostMapping("/category/{name}")
     @ResponseBody
-    public Category createCategory(@PathVariable String name){
+    public Category createCategory(@PathVariable(name = "name") String name){
         // TODO: 관리자 검증 추가
         return categoryService.createCategory(name);
     }
@@ -27,5 +27,10 @@ public class CategoryController {
         categoryService.deleteCategory(name);
         return true;
     }
-
+    @GetMapping("/category")
+    @ResponseBody
+    public ApiResult<List<Category>> getAllCategories(){
+        List<Category> categories = categoryService.findAllCategory();
+        return ApiResult.success(categories, "카테고리 성공");
+    }
 }

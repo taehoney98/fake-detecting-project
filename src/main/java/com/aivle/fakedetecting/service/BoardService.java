@@ -4,6 +4,7 @@ import com.aivle.fakedetecting.dto.RequestBoard;
 import com.aivle.fakedetecting.dto.RequestBoardPassword;
 import com.aivle.fakedetecting.entity.Board;
 import com.aivle.fakedetecting.entity.Category;
+import com.aivle.fakedetecting.entity.Image;
 import com.aivle.fakedetecting.entity.Member;
 import com.aivle.fakedetecting.repository.BoardRepository;
 import jakarta.transaction.Transactional;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @RequiredArgsConstructor
@@ -19,14 +21,16 @@ public class BoardService {
     private final BoardRepository boardRepository;
     private final MemberService memberService;
     private final CategoryService categoryService;
-
+    private final ImageService imageService;
     @Transactional
-    public Board createBoard(Long id, RequestBoard requestBoard) throws Exception {
+    public Board createBoard(Long id, RequestBoard requestBoard, MultipartFile multipartFile) throws Exception {
         Member member = memberService.findMember(id);
         Category category = categoryService.findCategory(requestBoard.getCategory());
+        Image image = imageService.uploadImage(multipartFile);
         Board board = Board.toEntity(requestBoard);
         board.setMember(member);
         board.setCategory(category);
+        board.setImage(image);
         return boardRepository.save(board);
     }
 

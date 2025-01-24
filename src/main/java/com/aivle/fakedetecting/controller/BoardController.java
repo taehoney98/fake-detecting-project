@@ -1,10 +1,7 @@
 package com.aivle.fakedetecting.controller;
 
 import com.aivle.fakedetecting.config.jwt.MemberPrincipal;
-import com.aivle.fakedetecting.dto.RequestBoard;
-import com.aivle.fakedetecting.dto.RequestBoardPassword;
-import com.aivle.fakedetecting.dto.ResponseBoard;
-import com.aivle.fakedetecting.dto.ResponseBoardPage;
+import com.aivle.fakedetecting.dto.*;
 import com.aivle.fakedetecting.entity.Board;
 import com.aivle.fakedetecting.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequiredArgsConstructor
@@ -21,8 +19,10 @@ public class BoardController {
 
     @PostMapping("/board")
     @ResponseBody
-    public Board createBoard(@RequestBody RequestBoard requestBoard, @AuthenticationPrincipal MemberPrincipal memberPrincipal) throws Exception {
-        return boardService.createBoard(memberPrincipal.getUserId(), requestBoard);
+    public ApiResult<Boolean> createBoard(@RequestPart(name = "requestBoard") RequestBoard requestBoard, @AuthenticationPrincipal MemberPrincipal memberPrincipal
+            , @RequestPart(required = false, name = "multipartFile") MultipartFile multipartFile) throws Exception {
+        boardService.createBoard(memberPrincipal.getUserId(), requestBoard, multipartFile);
+        return ApiResult.success(true, "개시글 작성");
     }
 
     @GetMapping("/board")
