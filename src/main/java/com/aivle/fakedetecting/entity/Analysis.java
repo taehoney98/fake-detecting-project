@@ -1,12 +1,11 @@
 package com.aivle.fakedetecting.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,6 +22,8 @@ public class Analysis extends BaseEntity{
     @ManyToOne
     @JoinColumn(name = "mb_seq")
     private Member memberId;
+    @OneToMany
+    private List<News> news;
     @Column(name = "url")
     private String url;
     @Column(name = "url_result")
@@ -30,9 +31,11 @@ public class Analysis extends BaseEntity{
     @Column(name = "url_detection_rate")
     private Long rate;
     @Column(name = "url_detection_date")
-    private String detectionDate;
+    private LocalDateTime detectionDate;
     @Column(name = "url_title")
     private String title;
     @Column(name = "url_content")
     private String content;
+
+
 }

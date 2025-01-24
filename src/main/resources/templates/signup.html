@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Detector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            width: 50px; /* 로고 이미지 크기 */
+            margin-right: 10px;
+        }
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #6a4df7;
+            font-weight: bold;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 60px;
+        }
+        .left-section {
+            flex: 1.5;
+            position: relative;
+        }
+        .left-section img {
+            width: 100%;
+        }
+        .stat-card {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .stat-card.likes {
+            top: 10%;
+            left: 10%;
+        }
+        .stat-card.followers {
+            top: 50%;
+            left: 5%;
+        }
+        .stat-card.reach {
+            bottom: 20%;
+            left: 15%;
+        }
+        .right-section {
+            flex: 1.2;
+        }
+        .right-section h2 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .right-section form input[type="text"],
+        .right-section form input[type="password"] {
+            width: calc(100% - 20px);
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .right-section form button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #6a4df7;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <!-- 로고 -->
+    <div class="logo">
+        <img src="path/to/logo.png" alt="Logo"> <!-- 로고 이미지 경로 -->
+    </div>
+    <!-- 네비게이션 -->
+    <nav>
+        <a href="#">게시판</a>
+        <a href="#">로그인</a>
+        <a href="#">회원가입</a>
+    </nav>
+</header>
+
+<div class="container">
+    <!-- 왼쪽 섹션 -->
+    <div class="left-section">
+        <!-- 배경 그래픽 -->
+        <img src="path/to/graphic.png" alt="Background Graphic"> <!-- 그래픽 이미지 경로 -->
+
+        <!-- 통계 카드 -->
+        <div class="stat-card likes">
+            <h3>15.9k</h3>
+            <p>Likes<br><span style="color:#28a745;">↑2.1% vs last week</span></p>
+        </div>
+
+        <div class="stat-card followers">
+            <h3>2,938</h3>
+            <p>Followers gained<br>after this post</p>
+        </div>
+
+        <div class="stat-card reach">
+            <h3>256.18k</h3>
+            <p>Reach<br><span style="color:#28a745;">↑2.1% vs last week</span></p>
+        </div>
+    </div>
+
+    <!-- 오른쪽 섹션 -->
+    <div class="right-section">
+        <h2>로그인</h2>
+
+        <!-- 로그인 폼 -->
+        <form action="/login" method="POST">
+            <label for="email">Email</label><br>
+            <input type="text" id="email" name="email" placeholder="이메일 주소를 입력하세요"><br>
+
+            <label for="password">Password</label><br>
+            <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요"><br>
+
+            <!-- 체크박스 -->
+            <input type="checkbox" id="remember-me" name="remember-me">
+            <label for="remember-me">로그인 상태 유지</label><br>
+
+            <!-- 로그인 버튼 -->
+            <button type="submit">로그인</button><br>
+
+            <!-- 회원가입 링크 -->
+            계정이 필요하신가요?
+            <a href="/signup">회원가입하기</a>
+        </form>
+    </div>
+</div>
+
+<footer style="text-align:center; margin-top:50px; color:#aaa;">
+    요금 안내
+</footer>
+
+</body>
+</html>
