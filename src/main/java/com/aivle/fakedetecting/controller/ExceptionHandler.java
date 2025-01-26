@@ -11,7 +11,7 @@ public class ExceptionHandler {
 
     @org.springframework.web.bind.annotation.ExceptionHandler(Exception.class)
     public ApiResult<Boolean> handleException(Exception e){
-        return ApiResult.error(HttpStatus.INTERNAL_SERVER_ERROR.value(), "서버 오류");
+        return ApiResult.error(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
     }
 
     @org.springframework.web.bind.annotation.ExceptionHandler(IllegalArgumentException.class)

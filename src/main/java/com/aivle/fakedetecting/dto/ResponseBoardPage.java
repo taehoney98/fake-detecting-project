@@ -3,6 +3,9 @@ package com.aivle.fakedetecting.dto;
 import com.aivle.fakedetecting.entity.Board;
 import lombok.*;
 
+import java.time.LocalDateTime;
+import java.util.Objects;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -14,6 +17,8 @@ public class ResponseBoardPage {
     private String user;
     private String category;
     private boolean lock;
+    private LocalDateTime createdDate;
+    private boolean answer;
 
     public static ResponseBoardPage toDto(Board board){
         return ResponseBoardPage.builder()
@@ -22,6 +27,8 @@ public class ResponseBoardPage {
                 .user(board.getMember().getNickName())
                 .category(board.getCategory().getName())
                 .lock(board.getPassword() != null)
+                .createdDate(board.getCreateDate())
+                .answer(board.getComment() != null)
                 .build();
     }
 }

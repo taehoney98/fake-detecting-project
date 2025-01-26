@@ -8,17 +8,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
 public class CategoryController {
     private final CategoryService categoryService;
 
-    @PostMapping("/category/{name}")
+    @PostMapping("/category")
     @ResponseBody
-    public Category createCategory(@PathVariable(name = "name") String name){
+    public Category createCategory(@RequestBody Map<String, String> param){
         // TODO: 관리자 검증 추가
-        return categoryService.createCategory(name);
+        return categoryService.createCategory(param.get("categoryName"));
     }
     @DeleteMapping("/category/{name}")
     @ResponseBody
