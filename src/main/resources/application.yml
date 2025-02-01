@@ -46,9 +46,19 @@ spring:
       cache: false
     restart:
       enabled: true
+  cloud:
+    openfeign:
+      httpclient:
+        connection-timeout: 120000
+        ok-http:
+          read-timeout: 120s
 logging:
   level:
     org:
+      springframework:
+        security: DEBUG
+        web:
+          filter: DEBUG
       hibernate:
         SQL: DEBUG
         type:

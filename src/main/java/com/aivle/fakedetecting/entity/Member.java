@@ -47,6 +47,9 @@ public class Member extends BaseEntity{
     @OneToMany(mappedBy = "member")
     @JsonBackReference
     private List<Board> boardList;
+    @OneToMany(mappedBy = "member")
+    @JsonManagedReference
+    private List<Analysis> analysisList;
 
     public static Member toEntity(RequestSignUp requestSignUp){
         return Member.builder()

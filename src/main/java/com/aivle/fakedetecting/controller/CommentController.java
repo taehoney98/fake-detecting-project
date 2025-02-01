@@ -1,5 +1,6 @@
 package com.aivle.fakedetecting.controller;
 
+import com.aivle.fakedetecting.dto.ApiResult;
 import com.aivle.fakedetecting.dto.RequestComment;
 import com.aivle.fakedetecting.entity.Comment;
 import com.aivle.fakedetecting.service.CommentService;
@@ -16,7 +17,8 @@ public class CommentController {
 
     @PostMapping("/comment")
     @ResponseBody
-    public Comment postComment(@RequestBody RequestComment requestComment) throws Exception {
-        return commentService.postComment(requestComment);
+    public ApiResult<Boolean> postComment(@RequestBody RequestComment requestComment) throws Exception {
+        commentService.postComment(requestComment);
+        return ApiResult.success(true, "댓글 작성");
     }
 }

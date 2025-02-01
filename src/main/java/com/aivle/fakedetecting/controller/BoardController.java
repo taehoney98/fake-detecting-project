@@ -27,8 +27,8 @@ public class BoardController {
 
     @PostMapping("/board-detail")
     @ResponseBody
-    public ApiResult<ResponseBoard> findBoard(@RequestBody RequestBoardPassword requestBoardPassword) throws Exception {
-        Board board = boardService.findBoard(requestBoardPassword);
+    public ApiResult<ResponseBoard> findBoard(@RequestBody RequestBoardPassword requestBoardPassword, @AuthenticationPrincipal MemberPrincipal memberPrincipal) throws Exception {
+         Board board = boardService.findBoard(requestBoardPassword, memberPrincipal);
         ResponseBoard responseBoard = ResponseBoard.toDto(board);
         if(board.getComment() != null)
             responseBoard.setComment(board.getComment().getContent());
@@ -56,5 +56,13 @@ public class BoardController {
             , @AuthenticationPrincipal MemberPrincipal memberPrincipal) throws Exception {
         boardService.deleteBoard(memberPrincipal.getUserId(), requestBoardPassword);
         return ApiResult.success(true, "삭제 성공");
+    }
+
+    @PutMapping("/board/{id}")
+    @ResponseBody
+    public ApiResult<Boolean> PutBoard(@PathVariable(name = "id")Long id, @RequestBody RequestBoard requestBoard) throws Exception {
+        boardService.putBoard(id, requestBoard);
+
+        return ApiResult.success(true, "성공");
     }
 }

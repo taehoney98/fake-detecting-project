@@ -2,6 +2,7 @@ package com.aivle.fakedetecting.controller;
 
 import com.aivle.fakedetecting.dto.ApiResult;
 import com.aivle.fakedetecting.error.CustomException;
+import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

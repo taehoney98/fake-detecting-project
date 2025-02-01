@@ -1,5 +1,6 @@
 package com.aivle.fakedetecting.config.jwt;
 
+import com.aivle.fakedetecting.enums.Role;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,6 +20,15 @@ public class MemberPrincipal implements UserDetails {
         this.username = username;
         this.password = password;
         this.authorities = authorities;
+    }
+
+    public Role getRole() {
+        for (GrantedAuthority authority : authorities) {
+            if (authority.getAuthority().equals(Role.ROLE_ADMIN.toString())) {
+                return Role.ROLE_ADMIN;
+            }
+        }
+        return Role.ROLE_USER;
     }
 
     @Override

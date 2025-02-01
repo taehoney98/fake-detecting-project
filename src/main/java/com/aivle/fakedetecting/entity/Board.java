@@ -45,5 +45,10 @@ public class Board extends BaseEntity{
                 .password(requestBoard.getPassword())
                 .build();
     }
+    public void modify(RequestBoard requestBoard){
+        this.title = requestBoard.getTitle();
+        this.content = requestBoard.getContent();
+        this.password = requestBoard.getPassword();
+    }
 
 }
