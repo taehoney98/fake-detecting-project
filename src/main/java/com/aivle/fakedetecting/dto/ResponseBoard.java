@@ -15,6 +15,7 @@ public class ResponseBoard {
     private String title;
     private String content;
     private String categoryName;
+    private Long memberId;
     private String memberName;
     private LocalDateTime createAt;
     private String comment;
@@ -24,8 +25,9 @@ public class ResponseBoard {
                 .title(board.getTitle())
                 .content(board.getContent())
                 .categoryName(board.getCategory().getName())
-                .memberName(board.getMember().getName()) // 닉네임, 이름 뭘로??
+                .memberName(board.getMember().getNickName()) // 닉네임, 이름 뭘로??
                 .createAt(board.getCreateDate())
+                .memberId(board.getMember().getSeq())
                 .build();
     }
 }

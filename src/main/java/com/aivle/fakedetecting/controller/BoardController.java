@@ -25,20 +25,36 @@ public class BoardController {
         return ApiResult.success(true, "개시글 작성");
     }
 
-    @GetMapping("/board")
+    @PostMapping("/board-detail")
     @ResponseBody
-    public ResponseBoard findBoard(@RequestBody RequestBoardPassword requestBoardPassword) throws Exception {
+    public ApiResult<ResponseBoard> findBoard(@RequestBody RequestBoardPassword requestBoardPassword) throws Exception {
         Board board = boardService.findBoard(requestBoardPassword);
         ResponseBoard responseBoard = ResponseBoard.toDto(board);
         if(board.getComment() != null)
             responseBoard.setComment(board.getComment().getContent());
-        return responseBoard;
+        return ApiResult.success(responseBoard, "조회 성공");
     }
 
     @GetMapping("/board/list")
     @ResponseBody
-    public Page<ResponseBoardPage> boardPage(@Param("page") Integer page){
-        Page<Board> board = boardService.getPageBoards(page);
-        return board.map(ResponseBoardPage::toDto);
+    public ApiResult<Page<ResponseBoardPage>> boardPage(@Param("page") String page){
+        int pageInteger = page.isEmpty() ? 0 : Integer.parseInt(page);
+        Page<Board> board = boardService.getPageBoards(pageInteger);
+        return ApiResult.success(board.map(ResponseBoardPage::toDto), "성공");
+    }
+
+    @PostMapping("/board-check")
+    @ResponseBody
+    public ApiResult<Boolean> checkBoard(@RequestBody RequestBoardPassword requestBoardPassword) throws Exception {
+        boardService.BoardPasswordCheck(requestBoardPassword);
+        return ApiResult.success(true, "비밀번호 일치");
+    }
+
+    @DeleteMapping("/board")
+    @ResponseBody
+    public ApiResult<Boolean> deleteBoard(@RequestBody RequestBoardPassword requestBoardPassword
+            , @AuthenticationPrincipal MemberPrincipal memberPrincipal) throws Exception {
+        boardService.deleteBoard(memberPrincipal.getUserId(), requestBoardPassword);
+        return ApiResult.success(true, "삭제 성공");
     }
 }

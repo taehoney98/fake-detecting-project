@@ -1,162 +1,188 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fake News Detector</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-        }
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-        .logo img {
-            width: 50px; /* 로고 이미지 크기 */
-            margin-right: 10px;
-        }
-        nav a {
-            margin-left: 20px;
-            text-decoration: none;
-            color: #6a4df7;
-            font-weight: bold;
-        }
-        .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 40px 60px;
-        }
-        .left-section {
-            flex: 1.5;
-            position: relative;
-        }
-        .left-section img {
-            width: 100%;
-        }
-        .stat-card {
-            position: absolute;
-            background-color: #fff;
-            border-radius: 15px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-        .stat-card.likes {
-            top: 10%;
-            left: 10%;
-        }
-        .stat-card.followers {
-            top: 50%;
-            left: 5%;
-        }
-        .stat-card.reach {
-            bottom: 20%;
-            left: 15%;
-        }
-        .right-section {
-            flex: 1.2;
-        }
-        .right-section h2 {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .right-section form input[type="text"],
-        .right-section form input[type="password"] {
-            width: calc(100% - 20px);
-            margin-top: 10px;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-        }
-        .right-section form button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #6a4df7;
-            color: white;
-            font-size: 16px;
-            border-radius: 5px;
-            border: none;
-        }
-    </style>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="css/globals.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/signup.css"/>
+    <script type="text/javascript" src="js/layout.js"></script>
+
 </head>
+
 <body>
-
-<header>
-    <!-- 로고 -->
-    <div class="logo">
-        <img src="path/to/logo.png" alt="Logo"> <!-- 로고 이미지 경로 -->
+<div class="screen">
+    <div class="group">
+        <div class="div">게시판</div>
+        <a href="/login" class="text-wrapper" id="loginLink">로그인</a>
+        <a href="/signup" class="frame" id="signupLink">
+            <div class="text-wrapper-4">회원가입</div>
+        </a>
+        <a href="/logout" class="frame" id="logoutLink" style="display: none">
+            <div class="text-wrapper-4">로그아웃</div>
+        </a>
     </div>
-    <!-- 네비게이션 -->
-    <nav>
-        <a href="#">게시판</a>
-        <a href="#">로그인</a>
-        <a href="#">회원가입</a>
-    </nav>
-</header>
+    <div class="overlap">
+        <img class="img" src="https://c.animaapp.com/TFf1ian7/img/-----2025-01-22-161402-1.png"/>
+        <img class="element-2" src="https://c.animaapp.com/TFf1ian7/img/-----2025-01-22-161343-1@2x.png"/>
+        <img class="element-3" src="https://c.animaapp.com/TFf1ian7/img/-----2025-01-22-161057-1@2x.png"/>
+        <img class="image" src="https://c.animaapp.com/TFf1ian7/img/image4@2x.png"/>
+        <img class="image-2" src="https://c.animaapp.com/TFf1ian7/img/image2@2x.png"/>
+        <img class="image-3" src="https://c.animaapp.com/TFf1ian7/img/image3.png"/>
+        <img class="element-4" src="https://c.animaapp.com/TFf1ian7/img/-----2025-01-22-161237-1@2x.png"/>
+        <div class="signup-container">
+            <h1 class="signup-title">회원가입</h1>
+            <form class="signup-form" method="post" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label for="email">이메일</label>
+                    <input type="email" id="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]" required placeholder="이메일을 입력하세요">
+                </div>
+                <div class="form-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" required placeholder="비밀번호를 입력하세요">
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">비밀번호 확인</label>
+                    <input type="password" id="confirmPassword" required placeholder="비밀번호를 다시 입력하세요">
+                </div>
+                <div class="form-group">
+                    <label for="phone">휴대전화 번호</label>
+                    <div class="phone-wrapper">
+                        <div class="country-selector">
+                            <select id="country-code" required>
+                                <option value="+82" data-flag="kr">🇰🇷 +82</option>
+                                <option value="+1" data-flag="us">🇺🇸 +1</option>
+                                <!-- 다른 국가 옵션 추가 -->
+                            </select>
+                            <input type="tel" id="phone" pattern="\d{3}-\d{4}-\d{4}" maxlength="13" required placeholder="010 0000 0000">
+                        </div>
+                    </div>
+                </div>
+                <div class="name-inputs">
+                    <div class="form-group">
+                        <label for="name">이름</label>
+                        <input type="text" id="name" placeholder="이름을 입력해주세요." required>
+                    </div>
 
-<div class="container">
-    <!-- 왼쪽 섹션 -->
-    <div class="left-section">
-        <!-- 배경 그래픽 -->
-        <img src="path/to/graphic.png" alt="Background Graphic"> <!-- 그래픽 이미지 경로 -->
-
-        <!-- 통계 카드 -->
-        <div class="stat-card likes">
-            <h3>15.9k</h3>
-            <p>Likes<br><span style="color:#28a745;">↑2.1% vs last week</span></p>
-        </div>
-
-        <div class="stat-card followers">
-            <h3>2,938</h3>
-            <p>Followers gained<br>after this post</p>
-        </div>
-
-        <div class="stat-card reach">
-            <h3>256.18k</h3>
-            <p>Reach<br><span style="color:#28a745;">↑2.1% vs last week</span></p>
+                    <div class="form-group">
+                        <label for="nickName">닉네임</label>
+                        <input type="text" id="nickName" placeholder="닉네임을 입력해주세요." required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="svcAgmt">
+                        <input type="checkbox" id="svcAgmt" required>
+                        개인정보 수집 및 이용에 동의 하십니까?
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="infoAgmt">
+                        <input type="checkbox" id="infoAgmt" required>
+                        서비스 이용약관에 동의 하십니까?
+                    </label>
+                </div>
+                <button type="submit" class="signup-button">회원가입</button>
+            </form>
         </div>
     </div>
-
-    <!-- 오른쪽 섹션 -->
-    <div class="right-section">
-        <h2>로그인</h2>
-
-        <!-- 로그인 폼 -->
-        <form action="/login" method="POST">
-            <label for="email">Email</label><br>
-            <input type="text" id="email" name="email" placeholder="이메일 주소를 입력하세요"><br>
-
-            <label for="password">Password</label><br>
-            <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요"><br>
-
-            <!-- 체크박스 -->
-            <input type="checkbox" id="remember-me" name="remember-me">
-            <label for="remember-me">로그인 상태 유지</label><br>
-
-            <!-- 로그인 버튼 -->
-            <button type="submit">로그인</button><br>
-
-            <!-- 회원가입 링크 -->
-            계정이 필요하신가요?
-            <a href="/signup">회원가입하기</a>
-        </form>
-    </div>
+    <div class="text-wrapper-3">요금 안내</div>
+    <a class="text-wrapper" href="/">
+        <img class="element-5" src="https://c.animaapp.com/TFf1ian7/img/-----2025-01-22-165404-1@2x.png"/>
+    </a>
 </div>
+<script type="text/javascript">
+    window.onload = function() {
+        // 디스플레이 배율 값 얻기
+        const devicePixelRatio = window.devicePixelRatio;
 
-<footer style="text-align:center; margin-top:50px; color:#aaa;">
-    요금 안내
-</footer>
+        // 배율에 따라 scale 값 계산 (예: 125% 배율은 0.8, 100% 배율은 1.0)
+        let scaleValue = 1.0;  // 기본 값 1.0
+        if (devicePixelRatio > 1) {
+            scaleValue = 0.8;  // 배율이 100% 이상일 때 0.8로 축소
+        }
 
+        // 화면 축소 적용
+        document.body.style.transform = `scale(${scaleValue})`;  // 배율에 맞게 축소
+        document.body.style.transformOrigin = "0 0";  // 축소 기준을 왼쪽 상단으로 설정
+
+        // 화면 크기 설정 (1920x1080)
+        document.body.style.width = "1920px";
+        document.body.style.height = "1080px";
+
+        const token = localStorage.getItem('token'); // localStorage에서 token 확인
+
+        const loginLink = document.getElementById('loginLink');
+        const signupLink = document.getElementById('signupLink');
+        const logoutLink = document.getElementById('logoutLink');
+
+        if (token) {
+            // 토큰이 있으면 로그인/회원가입 링크 숨기고 로그아웃 링크 보임
+            loginLink.style.display = 'none';
+            signupLink.style.display = 'none';
+            logoutLink.style.display = 'flex';
+        } else {
+            // 토큰이 없으면 로그인/회원가입 링크 보임
+            loginLink.style.display = 'flex';
+            signupLink.style.display = 'flex';
+            logoutLink.style.display = 'none';
+        }
+    };
+</script>
+<script>
+    // 휴대전화 번호를 국가 코드와 결합하는 함수
+    function getFullPhoneNumber() {
+        const countryCode = document.getElementById('country-code').value;
+        const phoneNumber = document.getElementById('phone').value;
+        return countryCode + phoneNumber;
+    }
+    document.getElementById('logoutLink').addEventListener('click', function(event) {
+        // localStorage에서 token 삭제
+        localStorage.removeItem('token');
+    });
+    // 폼 제출 처리 함수
+    function handleFormSubmit(event) {
+        event.preventDefault(); // 폼 제출 기본 동작 방지
+        const fullPhoneNumber = getFullPhoneNumber();
+
+        const formData = {
+            email: document.getElementById('email').value,
+            password: document.getElementById('password').value,
+            confirmPassword: document.getElementById('confirmPassword').value,
+            phone: fullPhoneNumber,
+            name: document.getElementById('name').value,
+            nickName: document.getElementById('nickName').value,
+            svcAgmt: document.getElementById('svcAgmt').checked,
+            infoAgmt: document.getElementById('infoAgmt').checked,
+        };
+
+        // fetch를 사용하여 비동기적으로 서버로 데이터 전송
+        fetch('/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json', // 서버가 JSON을 처리하도록
+            },
+            body: JSON.stringify(formData), // JSON 형식으로 데이터 전송
+        })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(data => {
+                        throw new Error(data.message || '서버와의 통신에 문제가 발생했습니다.');
+                    });
+                }
+                return response.text(); // 성공적인 응답을 text로 변환
+            })
+            .then(data => {
+                if (data) {
+                    window.location.href = '/login';
+                } else {
+                    alert('회원가입 실패');
+                }
+            })
+            .catch(error => {
+                console.error('에러 발생:', error);
+                alert('서버와의 통신에 문제가 발생했습니다.');
+            });
+    }
+</script>
 </body>
 </html>

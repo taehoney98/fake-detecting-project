@@ -1,128 +1,98 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
-    <title>Fake News Detector</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            background-color: #fff;
-        }
-        .logo {
-            display: flex;
-            align-items: center;
-            font-size: 24px;
-            font-weight: bold;
-            color: #6a4df7;
-        }
-        .logo img {
-            width: 40px;
-            margin-right: 10px;
-        }
-        nav a {
-            margin-left: 20px;
-            text-decoration: none;
-            color: #6a4df7;
-            font-weight: bold;
-        }
-        .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 60px 40px;
-        }
-        .left-section {
-            flex: 1;
-        }
-        .left-section img {
-            width: 100%;
-            max-width: 500px; /* Adjust as needed */
-        }
-        .right-section {
-            flex: 1;
-            padding-left: 40px;
-        }
-        .right-section h1 {
-            font-size: 36px;
-            color: #333;
-        }
-        .right-section p {
-            font-size: 18px;
-            color: #666;
-            margin-top: 20px;
-        }
-        .url-input-container {
-            margin-top: 30px;
-        }
-        .url-input-container input[type="text"] {
-            width: calc(100% - 120px);
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-        }
-        .url-input-container button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #6a4df7;
-            color: white;
-            border-radius: 5px;
-            border: none;
-        }
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            color: #aaa;
-        }
-    </style>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="css/globals.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/login.css" />
+    <script type="text/javascript" src="js/layout.js"></script>
 </head>
+
 <body>
-
-<header>
-    <div class="logo">
-        <img src="#" alt="Logo Placeholder"> <!-- Replace with logo image -->
-        FND
+<div class="screen">
+    <div class="group">
+        <div class="div">게시판</div>
+        <a href="/login" class="text-wrapper" id="loginLink">로그인</a>
+        <a href="/signup" class="frame" id="signupLink">
+            <div class="text-wrapper-4">회원가입</div>
+        </a>
+        <a href="/logout" class="frame" id="logoutLink" style="display: none">
+            <div class="text-wrapper-4">로그아웃</div>
+        </a>
     </div>
-    <nav>
-        <a href="#">로그인</a>
-        <a href="#">회원가입</a>
-    </nav>
-</header>
-
-<div class="container">
-    <!-- Left Section -->
-    <div class="left-section">
-        <img src="#" alt="Project Overview Placeholder"> <!-- Replace with actual image -->
-    </div>
-
-    <!-- Right Section -->
-    <div class="right-section">
-        <h1>가짜 뉴스 확인을 위해 신뢰할 수 있는<br>AI 알고리즘과 공신력 있는<br>뉴스 데이터를 활용합니다.</h1>
-
-        <p>아래 입력란에 유튜브 동영상의 URL을 복사하여 붙여넣고<br>'분석하기' 버튼을 눌러주세요.<br>분석 결과는 콘텐츠 요약, 의심스러운 정보 여부, 관련 뉴스 기사 등의 형태로 제공됩니다.</p>
-
-        <!-- URL Input Section -->
-        <div class="url-input-container">
-            <input type="text" placeholder="URL을 입력하세요">
-            <button>분석하기</button>
+    <div class="overlap">
+        <img class="img" src="https://c.animaapp.com/TFf1ian7/img/-----2025-01-22-161402-1.png" />
+        <img class="element-2" src="https://c.animaapp.com/TFf1ian7/img/-----2025-01-22-161343-1@2x.png" />
+        <img class="element-3" src="https://c.animaapp.com/TFf1ian7/img/-----2025-01-22-161057-1@2x.png" />
+        <img class="image" src="https://c.animaapp.com/TFf1ian7/img/image4@2x.png" />
+        <img class="image-2" src="https://c.animaapp.com/TFf1ian7/img/image2@2x.png" />
+        <img class="image-3" src="https://c.animaapp.com/TFf1ian7/img/image3.png" />
+        <img class="element-4" src="https://c.animaapp.com/TFf1ian7/img/-----2025-01-22-161237-1@2x.png" />
+        <div class="login-container">
+            <h1 class="login-title">로그인</h1>
+            <form class="login-form" onsubmit="handleLoginSubmit(event)">
+                <div class="form-group">
+                    <label for="email">이메일</label>
+                    <input type="email" id="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]" required placeholder="이메일을 입력하세요">
+                </div>
+                <div class="form-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" required placeholder="비밀번호를 입력하세요">
+                </div>
+                <button type="submit" class="login-button">로그인</button>
+            </form>
         </div>
     </div>
+    <div class="text-wrapper-3">요금 안내</div>
+    <a class="text-wrapper" href="/">
+        <img class="element-5" src="https://c.animaapp.com/TFf1ian7/img/-----2025-01-22-165404-1@2x.png" />
+    </a>
 </div>
+<script type="text/javascript">
+    // 로그인 폼 제출 처리 함수
+    function handleLoginSubmit(event) {
+        event.preventDefault(); // 폼 제출 기본 동작 방지
 
-<footer>
-    요금 안내
-</footer>
+        const formData = {
+            email: document.getElementById('email').value,
+            password: document.getElementById('password').value
+        };
 
+        // 로그인 요청을 POST 방식으로 보냄
+        fetch('/login', {
+            method: 'POST',  // 요청 방식은 'POST'
+            headers: {
+                'Content-Type': 'application/json',  // 서버가 JSON을 처리하도록
+            },
+            body: JSON.stringify(formData), // JSON 형식으로 데이터 전송
+        })
+            .then(response => {
+                if (response.ok) {
+                    // 서버에서 Authorization 헤더에서 JWT를 가져옴
+                    const token = response.headers.get('Authorization');
+                    if (token) {
+                        // JWT를 localStorage에 저장
+                        localStorage.setItem('token', token.replace('Bearer ', ''));  // 'Bearer ' 접두어 제거하고 저장
+
+                        alert('로그인 성공!');
+                        // 로그인 성공 후 /home 페이지로 이동
+                        window.location.href = '/';  // 로그인 성공 후 이동할 페이지
+                    } else {
+                        alert('로그인 실패: 토큰이 반환되지 않았습니다.');
+                    }
+                } else {
+                    return response.json().then(data => {
+                        alert('로그인 실패: ' + data.message);
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('에러 발생:', error);
+                alert('서버와의 통신에 문제가 발생했습니다.');
+            });
+    }
+</script>
 </body>
+
 </html>

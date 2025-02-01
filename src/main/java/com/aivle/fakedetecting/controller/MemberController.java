@@ -54,4 +54,12 @@ public class MemberController {
             , @AuthenticationPrincipal MemberPrincipal memberPrincipal){
         return memberService.updateProfile(memberPrincipal.getUserId(), requestProfile);
     }
+
+    @GetMapping("/profile")
+    @ResponseBody
+    public ApiResult<ResponseProfile> getProfile(@AuthenticationPrincipal MemberPrincipal memberPrincipal){
+        Member member = memberService.findMember(memberPrincipal.getUserId());
+        ResponseProfile responseProfile = ResponseProfile.toResponseProfile(member);
+        return ApiResult.success(responseProfile, "프로필 조회 성공");
+    }
 }
