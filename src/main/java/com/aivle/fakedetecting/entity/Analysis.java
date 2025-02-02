@@ -15,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity 
 @Builder
+@Table(name = "url_detection_history")
 public class Analysis extends BaseEntity{
 
     @Id
@@ -29,11 +30,11 @@ public class Analysis extends BaseEntity{
     private List<News> news;
     @Column(name = "url")
     private String url;
-    @Column(name = "url_detection_fake_news_rate")
+    @Column(name = "url_detection_rate")
     private Float fakeNewsRate;
-    @Column(name = "url_detection_deep_voice_rate")
+    @Column(name = "deap_voice_rate")
     private Float deepVoiceRate;
-    @Column(name = "url_detection_deep_fake_rate")
+    @Column(name = "deap_fake_rate")
     private Float deepFakeRate;
     @Column(name = "url_title")
     private String title;

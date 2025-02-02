@@ -61,7 +61,7 @@ public class AnalysisService {
     }
 
     public List<Analysis> getAnalysisList(Long memberId) {
-        return analysisRepository.findByMember_Seq(memberId);
+        return analysisRepository.findByMember_SeqOrderByCreateDateDesc(memberId);
     }
 }
 

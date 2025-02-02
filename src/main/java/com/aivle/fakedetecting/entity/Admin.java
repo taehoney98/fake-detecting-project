@@ -11,12 +11,15 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "tb_admin")
 public class Admin extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "admin_seq")
+    @Column(name = "admin_id")
     private Long id;
+    @Column(name = "admin_named")
     private String email;
+    @Column(name = "admin_pwd")
     private String password;
 //    private String state;
 }

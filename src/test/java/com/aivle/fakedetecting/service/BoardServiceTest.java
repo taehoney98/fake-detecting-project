@@ -186,24 +186,24 @@ class BoardServiceTest {
     void getPageBoards_ShouldReturnPopulatedPage_WhenBoardsExist() {
         int page = 0;
         Page<Board> mockPage = mock(Page.class);
-        when(boardRepository.findAll(any(Pageable.class))).thenReturn(mockPage);
+        when(boardRepository.findAllByOrderByIdDesc(any(Pageable.class))).thenReturn(mockPage);
 
         Page<Board> result = boardService.getPageBoards(page);
 
         assertNotNull(result);
-        verify(boardRepository, times(1)).findAll(any(Pageable.class));
+        verify(boardRepository, times(1)).findAllByOrderByIdDesc(any(Pageable.class));
     }
 
     @Test
     void getPageBoards_ShouldReturnEmptyPage_WhenNoBoardsExist() {
         int page = 0;
         Page<Board> emptyPage = Page.empty();
-        when(boardRepository.findAll(any(Pageable.class))).thenReturn(emptyPage);
+        when(boardRepository.findAllByOrderByIdDesc(any(Pageable.class))).thenReturn(emptyPage);
 
         Page<Board> result = boardService.getPageBoards(page);
 
         assertEquals(0, result.getTotalElements());
-        verify(boardRepository, times(1)).findAll(any(Pageable.class));
+        verify(boardRepository, times(1)).findAllByOrderByIdDesc(any(Pageable.class));
     }
 
 

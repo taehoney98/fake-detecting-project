@@ -13,6 +13,7 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @Builder
+@Table(name = "tb_board")
 public class Board extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

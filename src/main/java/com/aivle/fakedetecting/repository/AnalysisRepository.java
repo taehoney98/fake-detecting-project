@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface AnalysisRepository extends JpaRepository<Analysis, Long> {
     List<Analysis> findByMember_Seq(Long seq);
+
+    List<Analysis> findByMember_SeqOrderByCreateDateDesc(Long seq);
 }

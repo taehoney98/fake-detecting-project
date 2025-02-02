@@ -32,8 +32,10 @@ public class BoardService {
         Board board = Board.toEntity(requestBoard);
         board.setMember(member);
         board.setCategory(category);
-        board.setImage(image);
-        image.setBoard(board);
+        if(image != null) {
+            board.setImage(image);
+            image.setBoard(board);
+        }
         return boardRepository.save(board);
     }
 
@@ -55,8 +57,8 @@ public class BoardService {
     }
 
     public Page<Board> getPageBoards(int page){
-        Pageable pageable = PageRequest.of(page, 10);
-        return boardRepository.findAll(pageable);
+        Pageable pageable = PageRequest.of(page, 8);
+        return boardRepository.findAllByOrderByIdDesc(pageable);
     }
 
     public Board BoardPasswordCheck(RequestBoardPassword requestBoardPassword) throws Exception {
