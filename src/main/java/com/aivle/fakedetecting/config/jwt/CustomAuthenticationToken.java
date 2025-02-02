@@ -1,5 +1,6 @@
 package com.aivle.fakedetecting.config.jwt;
 
+import com.aivle.fakedetecting.enums.Role;
 import lombok.Getter;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,20 +13,24 @@ public class CustomAuthenticationToken extends AbstractAuthenticationToken {
     private final Long id;
     private final String username;
     private final String token;
+    @Getter
+    private final Role role;
 
-    public CustomAuthenticationToken(Long id, String username, String token) {
+    public CustomAuthenticationToken(Long id, String username, String token, Role role) {
         super(new ArrayList<>());
         this.id = id;
         this.username = username;
         this.token = token;
+        this.role = role;
         setAuthenticated(false); // 초기에는 인증되지 않은 상태
     }
 
-    public CustomAuthenticationToken(Long id, String username, String token, Collection<? extends GrantedAuthority> authorities) {
+    public CustomAuthenticationToken(Long id, String username, String token, Collection<? extends GrantedAuthority> authorities, Role role) {
         super(authorities);
         this.id = id;
         this.username = username;
         this.token = token;
+        this.role = role;
         setAuthenticated(true); // 인증된 상태
     }
 
@@ -43,4 +48,5 @@ public class CustomAuthenticationToken extends AbstractAuthenticationToken {
     public void setAuthenticated(boolean authenticated) {
         super.setAuthenticated(authenticated);
     }
+
 }

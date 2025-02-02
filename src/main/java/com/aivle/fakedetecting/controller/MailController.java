@@ -14,6 +14,7 @@ public class MailController {
 
     @PostMapping("/send-verification-code")
     @ResponseBody
+//    TODO: param 수정
     public String sendVerificationCode(@RequestParam String email) {
         String verificationCode = mailService.generateVerificationCode();
         mailService.sendVerificationEmail(email, verificationCode);

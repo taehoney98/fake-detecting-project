@@ -43,8 +43,27 @@ dependencies {
 	implementation group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.12.6'
 	implementation group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.12.6'
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+	// Fast Api
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:4.1.4'
+	runtimeOnly 'com.h2database:h2'
+	implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.12.6'
+	implementation group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.12.6'
+	implementation group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.12.6'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+ext {
+	set('springCloudVersion', "2023.0.2")
+}
+
+dependencyManagement {
+
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+
 }

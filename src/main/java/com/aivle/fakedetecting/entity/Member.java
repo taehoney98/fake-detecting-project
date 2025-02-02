@@ -1,10 +1,15 @@
 package com.aivle.fakedetecting.entity;
 
 import com.aivle.fakedetecting.dto.RequestChangePassword;
+import com.aivle.fakedetecting.dto.RequestProfile;
 import com.aivle.fakedetecting.dto.RequestSignUp;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -29,15 +34,22 @@ public class Member extends BaseEntity{
     private String passwordBefore;
     @Column(name = "mb_phone")
     private String phone;
-    @Column(name = "mb_gender")
-    private String gender;
+//    @Column(name = "mb_gender")
+//    private String gender;
     @Column(name = "mb_svc_use_pcy_agmt")
     private boolean svcAgmt;
     @Column(name = "mb_svc_info_proc_agmt")
     private boolean infoAgmt;
-
+//    @Column(name = "mb_address")
+//    private String address;
 //    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
 //    private MailAuth mailAuth;
+    @OneToMany(mappedBy = "member")
+    @JsonBackReference
+    private List<Board> boardList;
+    @OneToMany(mappedBy = "member")
+    @JsonManagedReference
+    private List<Analysis> analysisList;
 
     public static Member toEntity(RequestSignUp requestSignUp){
         return Member.builder()
@@ -47,9 +59,10 @@ public class Member extends BaseEntity{
                 .password(requestSignUp.getPassword())
                 .passwordBefore(requestSignUp.getPassword())
                 .phone(requestSignUp.getPhone())
-                .gender(requestSignUp.getGender())
+//                .gender(requestSignUp.getGender())
                 .svcAgmt(requestSignUp.isSvcAgmt())
                 .infoAgmt(requestSignUp.isInfoAgmt())
+//                .address(requestSignUp.getAddress())
                 .build();
     }
 
@@ -61,5 +74,11 @@ public class Member extends BaseEntity{
     public void pwdChange(RequestChangePassword requestChangePassword){
         this.password = requestChangePassword.getNewPassword();
         this.passwordBefore = requestChangePassword.getCurrentPassword();
+    }
+
+    public void profileChange(RequestProfile requestProfile){
+//        this.address = requestProfile.getAddress();
+        this.nickName = requestProfile.getNickName();
+        this.phone = requestProfile.getPhone();
     }
 }

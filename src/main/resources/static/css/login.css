@@ -1,0 +1,81 @@
+.login-container {
+  position: absolute;
+  top: 50%;
+  right: 100px;
+  transform: translateY(-50%);
+  width: 400px;
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.login-title {
+  font-family: "Nanum Gothic", Helvetica;
+  font-size: 24px;
+  font-weight: 700;
+  color: #332c5c;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-family: "Nanum Gothic", Helvetica;
+  font-size: 14px;
+  font-weight: 700;
+  color: #332c5c;
+}
+
+.form-group input {
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-family: "Nanum Gothic", Helvetica;
+  font-size: 14px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #7562e0;
+}
+.form-group input::placeholder {
+  color: #cccccc;
+}
+.login-button {
+  background-color: #8976fd;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  font-family: "Nanum Gothic", Helvetica;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.login-button:hover {
+  background-color: #7562e0;
+}
+
+.name-inputs {
+  display: flex;
+  gap: 16px;
+}
+
+.name-inputs .form-group {
+  flex: 1;
+}
