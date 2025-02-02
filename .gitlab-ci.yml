@@ -16,6 +16,8 @@ build_job:
     docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     docker build -t yotan9508/fakedetecting:$CI_COMMIT_SHA .
     docker push yotan9508/fakedetecting:$CI_COMMIT_SHA
+    docker build -t yotan9508/fakedetecting:latest .
+    docker push yotan9508/fakedetecting:$latest
 
 deploy_job:
   stage: deploy
