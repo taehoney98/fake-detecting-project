@@ -61,3 +61,12 @@ service:
 
 upload:
   path: src/main/resources/static/images/
+
+cloud:
+  aws:
+    s3:
+      bucket: my-app-image-bucket
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
