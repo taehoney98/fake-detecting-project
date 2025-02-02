@@ -41,7 +41,7 @@ public class BoardService {
     public Board findBoard(RequestBoardPassword requestBoardPassword, MemberPrincipal memberPrincipal) throws Exception {
         Board board = boardRepository.findById(requestBoardPassword.getId())
                 .orElseThrow(() -> new Exception("게시글이 없습니다."));
-        if(memberPrincipal.getRole().equals(Role.ROLE_ADMIN)){
+        if(memberPrincipal != null && memberPrincipal.getRole().equals(Role.ROLE_ADMIN)){
             return board;
         }
         if(board.getPassword() != null && !board.getPassword().equals(requestBoardPassword.getPassword()))
