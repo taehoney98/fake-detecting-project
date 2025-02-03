@@ -1,5 +1,6 @@
 package com.aivle.fakedetecting.client.api;
 
+import com.aivle.fakedetecting.config.FeignConfig;
 import com.aivle.fakedetecting.dto.AanalysisResult;
 import com.aivle.fakedetecting.dto.ResponseAnalysis;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -11,7 +12,8 @@ import java.util.List;
 
 @FeignClient(
         name = "fastApiClient",
-        url = "http://localhost:8000" // 구축할 서버 주소
+        url = "115.137.19.61:2222", // 구축할 서버 주소
+        configuration = FeignConfig.class
 )
 @Component
 public interface FastApiClient {
