@@ -1,0 +1,32 @@
+default:
+  image: docker:24.0.5
+  services:
+    - docker:24.0.5-dind
+  before_script:
+    - docker info
+
+stages:
+  - build
+  - deploy
+
+build_job:
+  stage: build
+  script: |
+    echo "Building the application..."
+    docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+    docker build -t yotan9508/fakedetecting:$CI_COMMIT_SHA .
+    docker push yotan9508/fakedetecting:$CI_COMMIT_SHA
+    docker build -t yotan9508/fakedetecting:latest .
+    docker push yotan9508/fakedetecting:latest
+
+deploy_job:
+  stage: deploy
+  script: |
+    echo "Deploying the application..."
+    docker pull yotan9508/fakedetecting:$CI_COMMIT_SHA
+    docker rm -f fakedetecting-container
+    docker run -d -p 8080:8080 --name fakedetecting-container yotan9508/fakedetecting:$CI_COMMIT_SHA
+  tags:
+    - spring-ec2-runner
+  only:
+    - main
