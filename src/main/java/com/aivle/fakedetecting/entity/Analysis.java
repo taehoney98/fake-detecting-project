@@ -1,5 +1,7 @@
 package com.aivle.fakedetecting.entity;
 
+import com.aivle.fakedetecting.dto.AanalysisResult;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -11,8 +13,9 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@EntityListeners(AuditingEntityListener.class)
+@Entity 
+@Builder
+@Table(name = "url_detection_history")
 public class Analysis extends BaseEntity{
 
     @Id
@@ -21,21 +24,31 @@ public class Analysis extends BaseEntity{
     private Long urlId;
     @ManyToOne
     @JoinColumn(name = "mb_seq")
-    private Member memberId;
-    @OneToMany
+    @JsonBackReference
+    private Member member;
+    @OneToMany(mappedBy = "analysis")
     private List<News> news;
     @Column(name = "url")
     private String url;
-    @Column(name = "url_result")
-    private String result;
     @Column(name = "url_detection_rate")
-    private Long rate;
-    @Column(name = "url_detection_date")
-    private LocalDateTime detectionDate;
+    private Float fakeNewsRate;
+    @Column(name = "deap_voice_rate")
+    private Float deepVoiceRate;
+    @Column(name = "deap_fake_rate")
+    private Float deepFakeRate;
     @Column(name = "url_title")
     private String title;
     @Column(name = "url_content")
     private String content;
 
+    public static Analysis toAnalysis(AanalysisResult aanalysisResult) {
+        return Analysis.builder()
+                .fakeNewsRate(aanalysisResult.getFakeNewsRate())
+                .deepVoiceRate(aanalysisResult.getDeepVoiceRate())
+                .deepFakeRate(aanalysisResult.getDeepFakeRate())
+                .title(aanalysisResult.getTitle())
+                .content(aanalysisResult.getContent())
+                .build();
+    }
 
 }

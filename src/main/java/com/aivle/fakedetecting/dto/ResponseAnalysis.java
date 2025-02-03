@@ -13,10 +13,10 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class ResponseAnalysis {
-
     private String url;
-    private String result;
-    private Long rate;
+    private Float fakeNewsRate;
+    private Float deepVoiceRate;
+    private Float deepFakeRate;
     // 확인 필요 -> LocalDateTime
     private LocalDateTime detectionDate;
     private String title;
@@ -27,9 +27,10 @@ public class ResponseAnalysis {
     public static ResponseAnalysis toResponseAnalysis(Analysis analysis){
         return ResponseAnalysis.builder()
                 .url(analysis.getUrl())
-                .result(analysis.getResult())
-                .rate(analysis.getRate())
-                .detectionDate(analysis.getDetectionDate())
+                .deepFakeRate(analysis.getDeepFakeRate())
+                .deepVoiceRate(analysis.getDeepVoiceRate())
+                .fakeNewsRate(analysis.getFakeNewsRate())
+                .detectionDate(analysis.getCreateDate())
                 .title(analysis.getTitle())
                 .content(analysis.getContent())
                 .relatedNews(analysis.getNews())

@@ -11,6 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "tb_mail_auth")
 public class MailAuth extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

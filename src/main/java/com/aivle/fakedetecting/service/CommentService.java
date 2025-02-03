@@ -17,7 +17,8 @@ public class CommentService {
     @Transactional
     public Comment postComment(RequestComment requestComment) throws Exception {
         Board board = boardService.findBoardById(requestComment.getBoard_id());
-        Comment comment = Comment.toEntity(requestComment);
+        Comment comment = board.getComment() == null ? Comment.toEntity(requestComment) : board.getComment();
+        comment.setContent(requestComment.getContent());
         comment.setBoard(board);
         return commentRepository.save(comment);
     }

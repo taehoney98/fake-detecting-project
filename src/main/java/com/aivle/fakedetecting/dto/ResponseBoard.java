@@ -19,15 +19,17 @@ public class ResponseBoard {
     private String memberName;
     private LocalDateTime createAt;
     private String comment;
+    private String imageUrl;
     public static ResponseBoard toDto(Board board){
         return ResponseBoard.builder()
                 .id(board.getId())
                 .title(board.getTitle())
                 .content(board.getContent())
                 .categoryName(board.getCategory().getName())
-                .memberName(board.getMember().getNickName()) // 닉네임, 이름 뭘로??
+                .memberName(board.getMember().getNickName())
                 .createAt(board.getCreateDate())
                 .memberId(board.getMember().getSeq())
+                .imageUrl(board.getImage() != null ? board.getImage().getName() : null)
                 .build();
     }
 }

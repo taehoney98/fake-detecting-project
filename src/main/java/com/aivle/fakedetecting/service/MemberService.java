@@ -3,6 +3,7 @@ package com.aivle.fakedetecting.service;
 import com.aivle.fakedetecting.config.jwt.JwtUtil;
 import com.aivle.fakedetecting.dto.*;
 import com.aivle.fakedetecting.entity.Member;
+import com.aivle.fakedetecting.enums.Role;
 import com.aivle.fakedetecting.error.CustomException;
 import com.aivle.fakedetecting.error.EmailAlreadyExistsException;
 import com.aivle.fakedetecting.error.MemberNotFound;
@@ -46,7 +47,7 @@ public class MemberService {
         if(!passwordEncoder.matches(requestLogin.getPassword(), findedMember.getPassword())){
             throw new CustomException("이메일 혹은 비밀번호를 잘못 입력하셨거나 등록되지 않은 이메일 입니다.");
         }
-        String token = jwtUtil.createJwt(findedMember.getSeq(), findedMember.getEmail(), 24*60*60*1000L);
+        String token = jwtUtil.createJwt(findedMember.getSeq(), findedMember.getEmail(), 24*60*60*1000L, Role.ROLE_USER);
 
         return ResponseLogin.toResponseLogin(findedMember, token);
     }
@@ -69,7 +70,7 @@ public class MemberService {
     public Member findMember(Long id){
         return memberRepository.findById(id).orElseThrow(MemberNotFound::new);
     }
-
+    @Transactional
     public Member updateProfile(Long id, RequestProfile requestProfile){
         Member member = findMember(id);
         member.profileChange(requestProfile);

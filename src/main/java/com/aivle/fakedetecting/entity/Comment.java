@@ -11,10 +11,11 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "tb_comment")
 public class Comment extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "comment_seq")
+    @Column(name = "comment_id")
     private Long id;
     @Column(name = "comment_content")
     private String content;
