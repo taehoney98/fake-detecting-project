@@ -1,11 +1,13 @@
 package com.aivle.fakedetecting.service;
 
+import com.aivle.fakedetecting.config.jwt.MemberPrincipal;
 import com.aivle.fakedetecting.dto.RequestBoard;
 import com.aivle.fakedetecting.dto.RequestBoardPassword;
 import com.aivle.fakedetecting.entity.Board;
 import com.aivle.fakedetecting.entity.Category;
 import com.aivle.fakedetecting.entity.Image;
 import com.aivle.fakedetecting.entity.Member;
+import com.aivle.fakedetecting.enums.Role;
 import com.aivle.fakedetecting.repository.BoardRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -26,18 +28,24 @@ public class BoardService {
     public Board createBoard(Long id, RequestBoard requestBoard, MultipartFile multipartFile) throws Exception {
         Member member = memberService.findMember(id);
         Category category = categoryService.findCategory(requestBoard.getCategory());
-        Image image = imageService.uploadImage(multipartFile);
+        Image image = imageService.uploadImageS3(multipartFile);
         Board board = Board.toEntity(requestBoard);
         board.setMember(member);
         board.setCategory(category);
-        board.setImage(image);
+        if(image != null) {
+            board.setImage(image);
+            image.setBoard(board);
+        }
         return boardRepository.save(board);
     }
 
     @Transactional
-    public Board findBoard(RequestBoardPassword requestBoardPassword) throws Exception {
+    public Board findBoard(RequestBoardPassword requestBoardPassword, MemberPrincipal memberPrincipal) throws Exception {
         Board board = boardRepository.findById(requestBoardPassword.getId())
                 .orElseThrow(() -> new Exception("게시글이 없습니다."));
+        if(memberPrincipal != null && memberPrincipal.getRole().equals(Role.ROLE_ADMIN)){
+            return board;
+        }
         if(board.getPassword() != null && !board.getPassword().equals(requestBoardPassword.getPassword()))
             throw new Exception("비밀번호가 일치하지 않습니다.");
         return board;
@@ -49,8 +57,8 @@ public class BoardService {
     }
 
     public Page<Board> getPageBoards(int page){
-        Pageable pageable = PageRequest.of(page, 10);
-        return boardRepository.findAll(pageable);
+        Pageable pageable = PageRequest.of(page, 8);
+        return boardRepository.findAllByOrderByIdDesc(pageable);
     }
 
     public Board BoardPasswordCheck(RequestBoardPassword requestBoardPassword) throws Exception {
@@ -71,5 +79,14 @@ public class BoardService {
             throw new Exception("삭제할 수 없습니다.");
         }
         boardRepository.delete(board);
+    }
+
+    @Transactional
+    public Board putBoard(Long id, RequestBoard requestBoard) throws Exception {
+        Board board = findBoardById(id);
+        board.modify(requestBoard);
+        Category category = categoryService.findCategory(requestBoard.getCategory());
+        board.setCategory(category);
+        return board;
     }
 }

@@ -13,6 +13,7 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @Builder
+@Table(name = "tb_board")
 public class Board extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,6 +45,11 @@ public class Board extends BaseEntity{
                 .content(requestBoard.getContent())
                 .password(requestBoard.getPassword())
                 .build();
+    }
+    public void modify(RequestBoard requestBoard){
+        this.title = requestBoard.getTitle();
+        this.content = requestBoard.getContent();
+        this.password = requestBoard.getPassword();
     }
 
 }

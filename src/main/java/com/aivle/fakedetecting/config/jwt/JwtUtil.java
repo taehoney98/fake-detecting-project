@@ -1,7 +1,7 @@
 package com.aivle.fakedetecting.config.jwt;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
+import com.aivle.fakedetecting.enums.Role;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,10 +21,11 @@ public class JwtUtil {
     }
 //    public final SecretKey key = Jwts.SIG.HS256.key().build();
 
-    public String createJwt(Long userId, String userName, Long expiredMs){
+    public String createJwt(Long userId, String userName, Long expiredMs, Role role){
         return Jwts.builder()
                 .claim("userName", userName)
                 .claim("userId", userId)
+                .claim("role", role)
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + expiredMs))
                 .signWith(key)
@@ -49,7 +50,6 @@ public class JwtUtil {
         if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
             return bearerToken.substring(7);
         }
-        log.error("token 에러");
         return null;
     }
 
@@ -57,9 +57,13 @@ public class JwtUtil {
         try {
             Jwts.parser().verifyWith(key).build().parseSignedClaims(token);
             return true; // 토큰이 유효하면 true
-        } catch (Exception e) {
-            log.error("token 만료");
-            return false; // 토큰이 무효하면 false
+        } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
+            log.info("Invalid JWT Token", e);
+        } catch (UnsupportedJwtException e) {
+            log.info("Unsupported JWT Token", e);
+        } catch (IllegalArgumentException e) {
+            log.info("JWT claims string is empty.", e);
         }
+        return false;
     }
 }

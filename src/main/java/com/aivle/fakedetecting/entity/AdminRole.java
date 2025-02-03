@@ -6,26 +6,23 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@EntityListeners(AuditingEntityListener.class)
-@Table(name = "board_image")
-public class Image{
+@Table(name = "admin_role")
+public class AdminRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "board_image_seq")
+    @Column(name = "role_id")
     private Long id;
-    @Column(name = "board_image_name")
-    private String name;
-    @Column(name = "board_image_url")
-    private String url;
-    @OneToOne
-    @JoinColumn(name = "bd_seq")
+    @Column(name = "role_name")
+    private String roleName;
+    @OneToMany(mappedBy = "admin_role")
     @JsonBackReference
-    private Board board;
+    private List<Admin> adminList;
 }

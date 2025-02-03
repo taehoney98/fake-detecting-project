@@ -17,6 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "tb_member")
 public class Member extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +27,7 @@ public class Member extends BaseEntity{
     private String email;
     @Column(name = "mb_name")
     private String name;
-    @Column(name = "mb_nickName")
+    @Column(name = "mb_nick_name")
     private String nickName;
     @Column(name = "mb_pwd")
     private String password;
@@ -47,6 +48,9 @@ public class Member extends BaseEntity{
     @OneToMany(mappedBy = "member")
     @JsonBackReference
     private List<Board> boardList;
+    @OneToMany(mappedBy = "member")
+    @JsonManagedReference
+    private List<Analysis> analysisList;
 
     public static Member toEntity(RequestSignUp requestSignUp){
         return Member.builder()

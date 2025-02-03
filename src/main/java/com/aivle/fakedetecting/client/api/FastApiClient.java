@@ -1,5 +1,6 @@
 package com.aivle.fakedetecting.client.api;
 
+import com.aivle.fakedetecting.dto.AanalysisResult;
 import com.aivle.fakedetecting.dto.ResponseAnalysis;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
@@ -15,5 +16,5 @@ import java.util.List;
 @Component
 public interface FastApiClient {
     @GetMapping("/analysis")
-    public List<ResponseAnalysis> getAnalysis(@RequestParam("url") String request);
+    public AanalysisResult getAnalysis(@RequestParam("url") String request);
 }

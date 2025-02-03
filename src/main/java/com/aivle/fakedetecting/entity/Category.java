@@ -16,10 +16,11 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Category extends BaseEntity{
+@Table(name = "tb_cd")
+public class Category{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cd_seq")
+    @Column(name = "cd_id")
     private Long id;
     @Column(name = "cd_name")
     private String name;
