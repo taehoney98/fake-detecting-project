@@ -22,4 +22,8 @@ public class Admin extends BaseEntity {
     @Column(name = "admin_pwd")
     private String password;
 //    private String state;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id")
+    private AdminRole admin_role;
+
 }

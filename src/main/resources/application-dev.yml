@@ -22,3 +22,6 @@ cloud:
       static: ap-northeast-2
     stack:
       auto: false
+    credentials:
+      accessKey: AKIA2S2Y4FJI4EGVBKHT
+      secretKey: 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

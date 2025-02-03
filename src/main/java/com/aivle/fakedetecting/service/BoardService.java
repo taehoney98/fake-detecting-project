@@ -28,7 +28,7 @@ public class BoardService {
     public Board createBoard(Long id, RequestBoard requestBoard, MultipartFile multipartFile) throws Exception {
         Member member = memberService.findMember(id);
         Category category = categoryService.findCategory(requestBoard.getCategory());
-        Image image = imageService.uploadImage(multipartFile);
+        Image image = imageService.uploadImageS3(multipartFile);
         Board board = Board.toEntity(requestBoard);
         board.setMember(member);
         board.setCategory(category);

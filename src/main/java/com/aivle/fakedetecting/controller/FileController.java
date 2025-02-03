@@ -1,5 +1,6 @@
 package com.aivle.fakedetecting.controller;
 
+import com.aivle.fakedetecting.service.ImageService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
@@ -26,7 +28,7 @@ import java.nio.file.Paths;
 public class FileController {
     @Value("${upload.path}")
     private String upload_path;
-
+    private final ImageService imageService;
     @GetMapping("/download/{fileName}")
     @ResponseBody
     public ResponseEntity<Resource> downloadFile(@PathVariable String fileName) throws IOException {
@@ -46,5 +48,10 @@ public class FileController {
                 .headers(headers)
                 .contentLength(resource.contentLength())
                 .body(resource);
+    }
+
+    @GetMapping("/download")
+    public ResponseEntity<byte[]> downloadFileS3(@RequestParam(name = "file") String filePath) throws IOException {
+        return imageService.downloadFile(filePath);
     }
 }
