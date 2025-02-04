@@ -11,7 +11,7 @@ import java.util.List;
 
 @FeignClient(
         name = "fastApiClient",
-        url = "http://localhost:8000" // 구축할 서버 주소
+        url = "115.137.19.61:2222" // 구축할 서버 주소
 )
 @Component
 public interface FastApiClient {
