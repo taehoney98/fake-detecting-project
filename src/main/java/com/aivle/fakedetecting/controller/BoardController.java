@@ -37,7 +37,7 @@ public class BoardController {
 
     @GetMapping("/board/list")
     @ResponseBody
-    public ApiResult<Page<ResponseBoardPage>> boardPage(@Param("page") String page){
+    public ApiResult<Page<ResponseBoardPage>> boardPage(@RequestParam(name = "page") String page){
         int pageInteger = page.isEmpty() ? 0 : Integer.parseInt(page);
         Page<Board> board = boardService.getPageBoards(pageInteger);
         return ApiResult.success(board.map(ResponseBoardPage::toDto), "성공");

@@ -13,13 +13,17 @@ import lombok.*;
 public class ResponseLogin {
     private Long id;
     private String email;
+    private String phone;
     private String token;
+    private String name;
     private Role role;
 
     public static ResponseLogin toResponseLogin(Member member, String token){
          return ResponseLogin.builder()
                  .id(member.getSeq())
                  .email(member.getEmail())
+                 .name(member.getName())
+                 .phone(member.getPhone())
                  .token(token)
                  .role(Role.ROLE_USER)
                  .build();
