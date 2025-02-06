@@ -2,6 +2,7 @@ package com.aivle.fakedetecting.service;
 
 import com.aivle.fakedetecting.config.jwt.JwtUtil;
 import com.aivle.fakedetecting.dto.*;
+import com.aivle.fakedetecting.entity.MailAuth;
 import com.aivle.fakedetecting.entity.Member;
 import com.aivle.fakedetecting.enums.Role;
 import com.aivle.fakedetecting.error.CustomException;
@@ -26,8 +27,12 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
+    private final MailService mailService;
     @Transactional
     public Member signUp(RequestSignUp requestSignUp) throws CustomException {
+        if(!requestSignUp.getPassword().equals(requestSignUp.getConfirmPassword())) {
+            throw new CustomException("비밀번호가 일치하지 않습니다.");
+        }
         if(!requestSignUp.isInfoAgmt() || !requestSignUp.isSvcAgmt()){
             throw new CustomException("개인정보 수집 및 서비스 이용약관에 동의하지 않았습니다.");
         }
@@ -37,6 +42,11 @@ public class MemberService {
         }
         Member member = Member.toEntity(requestSignUp);
         member.pwdEncode(passwordEncoder);
+        MailAuth mailAuth = new MailAuth();
+        mailAuth.setMailCode(requestSignUp.getReceivedCode());
+        MailAuth savedMailAuth = mailService.saveMailAuth(mailAuth);
+        member.setMailAuth(savedMailAuth);
+        mailAuth.setMember(member) ;
         return memberRepository.save(member);
     }
 

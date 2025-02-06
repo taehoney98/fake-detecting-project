@@ -2,6 +2,7 @@ package com.aivle.fakedetecting.controller;
 
 import com.aivle.fakedetecting.dto.ApiResult;
 import com.aivle.fakedetecting.error.CustomException;
+import com.aivle.fakedetecting.error.EmailAlreadyExistsException;
 import feign.FeignException;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.http.HttpStatus;
@@ -30,4 +31,10 @@ public class ExceptionHandler {
     public ApiResult<Boolean> handleFeignInternalServerError(FeignException.InternalServerError e) {
         return ApiResult.error(HttpStatus.INTERNAL_SERVER_ERROR.value(), "분석 실패");
     }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(EmailAlreadyExistsException.class)
+    public ApiResult<Boolean> handleFeignInternalServerError(EmailAlreadyExistsException e) {
+        return ApiResult.error(HttpStatus.INTERNAL_SERVER_ERROR.value(), "가입할 수 없는 이메일입니다.");
+    }
+
 }

@@ -43,8 +43,8 @@ public class Member extends BaseEntity{
     private boolean infoAgmt;
 //    @Column(name = "mb_address")
 //    private String address;
-//    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
-//    private MailAuth mailAuth;
+    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
+    private MailAuth mailAuth;
     @OneToMany(mappedBy = "member")
     @JsonBackReference
     private List<Board> boardList;

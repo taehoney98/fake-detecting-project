@@ -47,6 +47,7 @@ spring:
           read-timeout: 120s
 logging:
   level:
+    feign.client: DEBUG
     org:
       springframework:
         security: DEBUG
@@ -76,3 +77,7 @@ cloud:
     credentials:
       accessKey: AKIA2S2Y4FJI4EGVBKHT
       secretKey: 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
+
+payment:
+    api:
+      key: qTm6GDWqy2sFy0US9r7ojMICjWdstrnDSDGpL28UFSHJQxpDQI3VJEBT6FKvDnccFCUKBnn5nnePUOue
