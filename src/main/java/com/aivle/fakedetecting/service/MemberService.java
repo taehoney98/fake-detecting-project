@@ -86,4 +86,23 @@ public class MemberService {
         member.profileChange(requestProfile);
         return member;
     }
+
+    public Member findMemberByNameAndPhone(RequestFindMember requestFindMember){
+        return memberRepository.findByNameAndPhone(requestFindMember.getName(), requestFindMember.getPhone())
+                .orElseThrow(() -> new CustomException("찾을 수 없습니다."));
+    }
+
+    public Member findMemberByNameAndEmailAndPhone(RequestFindMember requestFindMember){
+        return memberRepository.findByNameAndEmailAndPhone(requestFindMember.getName()
+                        , requestFindMember.getEmail(), requestFindMember.getPhone())
+                .orElseThrow(() -> new CustomException("찾을 수 없습니다."));
+    }
+    @Transactional
+    public Member setNewPassword(RequestNewPassword requestNewPassword){
+        Member member = memberRepository.findByNameAndEmailAndPhone(requestNewPassword.getName()
+                , requestNewPassword.getEmail(), requestNewPassword.getPhone())
+                .orElseThrow(() -> new CustomException("찾을 수 없습니다."));
+         member.newPassword(passwordEncoder.encode(requestNewPassword.getPassword()));
+         return member;
+    }
 }

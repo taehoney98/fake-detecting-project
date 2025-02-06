@@ -82,4 +82,9 @@ public class Member extends BaseEntity{
         this.nickName = requestProfile.getNickName();
         this.phone = requestProfile.getPhone();
     }
+
+    public void newPassword(String password){
+        this.passwordBefore = password;
+        this.password = password;
+    }
 }
