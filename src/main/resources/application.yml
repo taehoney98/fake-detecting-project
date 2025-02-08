@@ -4,6 +4,20 @@ server:
 spring:
   application:
     name: fake-detection
+  datasource:
+    url: jdbc:mysql://fake-detection-db.c3ey0w642aok.ap-northeast-2.rds.amazonaws.com:3306/fakeDB?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: root
+    password: aivle202406
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    database: mysql
+    hibernate:
+      ddl-auto: none  # `create`, `update`, `validate`, `none` 중 선택
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
   mail:
     host: smtp.gmail.com
     port: 587
@@ -33,6 +47,7 @@ spring:
           read-timeout: 120s
 logging:
   level:
+    feign.client: DEBUG
     org:
       springframework:
         security: DEBUG
@@ -50,3 +65,19 @@ service:
 
 upload:
   path: src/main/resources/static/images/
+
+cloud:
+  aws:
+    s3:
+      bucket: fake-detecting-storage
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
+    credentials:
+      accessKey: AKIA2S2Y4FJI4EGVBKHT
+      secretKey: aH0Ph49DFMU9hSPoqr5bo1+EOldk2thcsJMteNP7
+
+payment:
+    api:
+      key: qTm6GDWqy2sFy0US9r7ojMICjWdstrnDSDGpL28UFSHJQxpDQI3VJEBT6FKvDnccFCUKBnn5nnePUOue

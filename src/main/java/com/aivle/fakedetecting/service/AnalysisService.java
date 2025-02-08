@@ -9,6 +9,8 @@ import com.aivle.fakedetecting.entity.News;
 import com.aivle.fakedetecting.repository.AnalysisRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -60,8 +62,9 @@ public class AnalysisService {
 //        analysisRepository.saveAll(analyses);
     }
 
-    public List<Analysis> getAnalysisList(Long memberId) {
-        return analysisRepository.findByMember_SeqOrderByCreateDateDesc(memberId);
+    public Page<Analysis> getAnalysisList(Long memberId, int page) {
+        Pageable pageable = Pageable.ofSize(9).withPage(page);
+        return analysisRepository.findAllByMember_SeqOrderByCreateDateDesc(memberId, pageable);
     }
 }
 

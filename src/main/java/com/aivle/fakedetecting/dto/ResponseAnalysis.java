@@ -13,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class ResponseAnalysis {
+    private Long id;
     private String url;
     private Float fakeNewsRate;
     private Float deepVoiceRate;
@@ -26,6 +27,7 @@ public class ResponseAnalysis {
 // json
     public static ResponseAnalysis toResponseAnalysis(Analysis analysis){
         return ResponseAnalysis.builder()
+                .id(analysis.getUrlId())
                 .url(analysis.getUrl())
                 .deepFakeRate(analysis.getDeepFakeRate())
                 .deepVoiceRate(analysis.getDeepVoiceRate())

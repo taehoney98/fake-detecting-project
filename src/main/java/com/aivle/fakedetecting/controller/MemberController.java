@@ -75,4 +75,25 @@ public class MemberController {
         ResponseProfile responseProfile = ResponseProfile.toResponseProfile(member);
         return ApiResult.success(responseProfile, "프로필 조회 성공");
     }
+
+    @PostMapping("/member/email")
+    @ResponseBody
+    public ApiResult<String> getEmail(@RequestBody RequestFindMember requestFindMember){
+        Member member = memberService.findMemberByNameAndPhone(requestFindMember);
+        return ApiResult.success(member.getEmail(), "성공");
+    }
+
+    @PostMapping("/member/exist")
+    @ResponseBody
+    public ApiResult<Boolean> getMemberExist(@RequestBody RequestFindMember requestFindMember){
+        Member member = memberService.findMemberByNameAndEmailAndPhone(requestFindMember);
+        return ApiResult.success(true, "성공");
+    }
+
+    @PutMapping("/member/password")
+    @ResponseBody
+    public ApiResult<Boolean> changePassword(@RequestBody RequestNewPassword requestNewPassword){
+        Member member = memberService.setNewPassword(requestNewPassword);
+        return ApiResult.success(true, "성공");
+    }
 }
