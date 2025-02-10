@@ -22,4 +22,5 @@ public class RequestSignUp {
     private boolean svcAgmt;
     private boolean infoAgmt;
 //    private String address;
+    private Integer receivedCode;
 }

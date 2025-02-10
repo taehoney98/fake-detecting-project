@@ -15,12 +15,13 @@ import lombok.Setter;
 public class MailAuth extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "mail_seq")
+    @Column(name = "mail_key")
     private Long id;
     @Column(name = "mail_code")
     private Integer mailCode;
 
-//    @OneToOne
-//    @JoinColumn(name = "mb_seq")
-//    private Member member;
+    @OneToOne
+    @JoinColumn(name = "mb_seq")
+    private Member member;
+
 }
