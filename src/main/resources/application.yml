@@ -21,9 +21,9 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: hops0210
-    password: efxqcjbwxotahzmz
-    properties:
+    username: 0000
+    password: 0000
+    properties: 0000
       mail:
         smtp:
           auth: true            # 사용자 인증 시도 여부
@@ -75,9 +75,9 @@ cloud:
     stack:
       auto: false
     credentials:
-      accessKey: AKIA2S2Y4FJI4EGVBKHT
-      secretKey: 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
+      accessKey: 0000
+      secretKey: 0000
 
 payment:
     api:
-      key: qTm6GDWqy2sFy0US9r7ojMICjWdstrnDSDGpL28UFSHJQxpDQI3VJEBT6FKvDnccFCUKBnn5nnePUOue
+      key: 0000
